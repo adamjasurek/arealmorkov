@@ -1,12 +1,11 @@
 import { contact } from '@/data/site'
 import { SectionHeading } from '@/components/ui/SectionHeading'
-import { BrutalButton } from '@/components/ui/BrutalButton'
 
 export function KontaktPage() {
   return (
     <section className="px-4 py-16 md:px-6">
       <div className="mx-auto max-w-[1400px]">
-        <SectionHeading eyebrow="napište nám" title="Kontakt" accent="INFO" />
+        <SectionHeading title="Kontakt" />
 
         <div className="grid gap-8 lg:grid-cols-2">
           <div className="card-brutal space-y-6 p-6">
@@ -36,7 +35,7 @@ export function KontaktPage() {
               ))}
             </div>
             <div>
-              <h3 className="font-display text-2xl">Pizza rozvoz</h3>
+              <h3 className="font-display text-2xl">Rozvoz pizzy</h3>
               <a
                 href={`tel:${contact.pizzaPhone}`}
                 className="font-display text-3xl text-gold-gradient"
@@ -55,13 +54,10 @@ export function KontaktPage() {
               <br />
               IČO: {contact.operator.ico}
             </p>
-            <BrutalButton to="/kemp" className="mt-8">
-              REZERVACE KEMPU →
-            </BrutalButton>
           </div>
         </div>
 
-        <div className="card-brutal mt-10 overflow-hidden p-0">
+        <div className="card-brutal mt-14 overflow-hidden p-0 md:mt-16">
           <iframe
             title="Mapa areálu Mořkov"
             src={contact.mapEmbed}

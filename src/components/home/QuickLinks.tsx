@@ -4,7 +4,7 @@ import { pizzaDelivery } from '@/data/site'
 
 const cards = [
   {
-    title: 'Pizza rozvoz',
+    title: 'Rozvoz pizzy',
     desc: `Objednávejte na ☎ ${pizzaDelivery.phone}`,
     to: '/restaurace',
     rotate: -2,
@@ -17,7 +17,7 @@ const cards = [
   },
   {
     title: 'Teplota vody',
-    desc: 'Aktuální stav bazénu naživo',
+    desc: 'Aktuální teplota bazénu',
     to: '/koupaliste',
     rotate: -1,
   },

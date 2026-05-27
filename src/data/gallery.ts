@@ -2,26 +2,17 @@ import { images } from '@/data/images'
 
 export type GalleryFolder = 'restaurant' | 'camp' | 'pool'
 
-/** Soubory z gallery_helper.php na arealmorkov.cz (ukázky stažené lokálně) */
+const gallerySlotCount = 8
+
+function gallerySlots(folder: GalleryFolder) {
+  return Array.from({ length: gallerySlotCount }, (_, index) => `${folder}-${index + 1}.jpg`)
+}
+
+/** Lokální kopie z arealmorkov.cz – public/img/galleries/{folder}/ */
 const galleryFiles: Record<GalleryFolder, string[]> = {
-  restaurant: [
-    '20250503_115011.jpg',
-    '20250503_164932.jpg',
-    '20250508_084607.jpg',
-    '20250508_085509.jpg',
-  ],
-  camp: [
-    'IMG-20250612-WA0000.jpg',
-    'IMG-20250612-WA0001.jpg',
-    'IMG-20250612-WA0002.jpg',
-    'IMG-20250612-WA0003.jpg',
-  ],
-  pool: [
-    'FB_IMG_1744872802311.jpg',
-    'FB_IMG_1744872814004.jpg',
-    'FB_IMG_1744872841837.jpg',
-    'FB_IMG_1744872850552.jpg',
-  ],
+  restaurant: gallerySlots('restaurant'),
+  camp: gallerySlots('camp'),
+  pool: gallerySlots('pool'),
 }
 
 export function galleryImagePath(folder: GalleryFolder, filename: string) {
@@ -29,14 +20,22 @@ export function galleryImagePath(folder: GalleryFolder, filename: string) {
 }
 
 export function getGalleryImages(folder: GalleryFolder) {
-  return galleryFiles[folder].map((filename) => ({
+  const label =
+    folder === 'restaurant'
+      ? 'restaurace Podhora'
+      : folder === 'camp'
+        ? 'kemp'
+        : 'koupaliště'
+
+  return galleryFiles[folder].map((filename, index) => ({
+    id: `${folder}-${index}`,
     filename,
     src: galleryImagePath(folder, filename),
-    alt: `Fotka – ${folder === 'restaurant' ? 'restaurace Podhora' : folder === 'camp' ? 'kemp' : 'koupaliště'}`,
+    alt: `Fotka – ${label}`,
   }))
 }
 
-/** Záložní náhled, pokud galerie ještě není stažená */
+/** Záložní náhled, pokud se fotka nenačte */
 export const galleryFallback: Record<GalleryFolder, string> = {
   restaurant: images.restaurantIntro,
   camp: images.campIntro,

@@ -1,6 +1,6 @@
-import { useState, type FormEvent } from 'react'
+import { useEffect, useState, type FormEvent } from 'react'
 import { BrutalButton } from '@/components/ui/BrutalButton'
-import { isEmailConfigured, sendReservation } from '@/lib/email'
+import { sendReservation } from '@/lib/email'
 
 const accommodationOptions = [
   '4-lůžková chatka',
@@ -8,10 +8,23 @@ const accommodationOptions = [
   'Místo pro karavan',
   'Stan velký (3+ osoby)',
   'Stan malý (do 2 osob)',
-]
+] as const
 
-export function ReservationForm() {
+type Props = {
+  accommodation?: string
+  onAccommodationChange?: (value: string) => void
+}
+
+export function ReservationForm({
+  accommodation = '',
+  onAccommodationChange,
+}: Props) {
   const [status, setStatus] = useState<'idle' | 'loading' | 'ok' | 'error'>('idle')
+  const [selectedAccommodation, setSelectedAccommodation] = useState(accommodation)
+
+  useEffect(() => {
+    setSelectedAccommodation(accommodation)
+  }, [accommodation])
 
   async function handleSubmit(e: FormEvent<HTMLFormElement>) {
     e.preventDefault()
@@ -31,6 +44,8 @@ export function ReservationForm() {
       })
       setStatus('ok')
       form.reset()
+      setSelectedAccommodation('')
+      onAccommodationChange?.('')
     } catch {
       setStatus('error')
     }
@@ -41,9 +56,7 @@ export function ReservationForm() {
       <div>
         <h3 className="font-display text-3xl text-gold-gradient">Poptávka na rezervaci</h3>
         <p className="mt-2 font-sans text-sm text-muted">
-          {isEmailConfigured()
-            ? 'Odešleme vám potvrzení e-mailem.'
-            : 'Demo režim – nastavte EmailJS v .env pro odesílání.'}
+          Vyplňte formulář a my se vám ozveme zpátky.
         </p>
       </div>
 
@@ -62,7 +75,16 @@ export function ReservationForm() {
         </label>
         <label className="block">
           <span className="font-display text-sm uppercase">Ubytování *</span>
-          <select name="accommodation" required className="input-brutal mt-1">
+          <select
+            name="accommodation"
+            required
+            value={selectedAccommodation}
+            onChange={(e) => {
+              setSelectedAccommodation(e.target.value)
+              onAccommodationChange?.(e.target.value)
+            }}
+            className="input-brutal mt-1"
+          >
             <option value="">Vyberte…</option>
             {accommodationOptions.map((o) => (
               <option key={o} value={o}>

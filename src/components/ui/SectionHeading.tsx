@@ -10,7 +10,7 @@ type Props = {
 export function SectionHeading({ eyebrow, title, accent, className = '' }: Props) {
   return (
     <motion.header
-      className={`relative mb-10 ${className}`}
+      className={`relative ${className || 'mb-10'}`}
       initial={{ opacity: 0, x: -24 }}
       whileInView={{ opacity: 1, x: 0 }}
       viewport={{ once: true, margin: '-80px' }}

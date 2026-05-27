@@ -1,4 +1,15 @@
+import { galleryImagePath } from '@/data/gallery'
 import { images } from '@/data/images'
+
+export type SisterBrand = {
+  id: string
+  name: string
+  description?: string
+  url: string
+  hostname: string
+  logo: string
+  image?: string
+}
 
 export const contact = {
   address: 'Květná 649, 742 72 Mořkov',
@@ -26,8 +37,7 @@ export const heroColumns = [
   {
     id: 'koupaliste',
     title: 'Koupaliště',
-    description:
-      'Letní osvěžení pro celou rodinu – moderní bazén s atrakcemi pro děti i dospělé.',
+    description: 'Osvěžte se v našem bazénu s atrakcemi pro děti i dospělé.',
     cta: 'Teplota & ceník',
     href: '/koupaliste',
     image: images.hero1,
@@ -36,8 +46,7 @@ export const heroColumns = [
   {
     id: 'kemp',
     title: 'Kemp',
-    description:
-      'Klid, pohoda a dobrodružství – stany, karavany i chatky jen pár kroků od restaurace.',
+    description: 'Ubytování v kempu uprostřed přírody.',
     cta: 'Rezervovat pobyt',
     href: '/kemp',
     image: images.hero2,
@@ -46,8 +55,7 @@ export const heroColumns = [
   {
     id: 'restaurace',
     title: 'Restaurace Podhora',
-    description:
-      'Gastronomie v srdci přírody – speciality naší kuchyně s výhledem a Pizza Olymp rozvoz.',
+    description: 'Speciality naší kuchyně v příjemném prostředí s výhledem.',
     cta: 'Menu & rozvoz',
     href: '/restaurace',
     image: images.hero3,
@@ -65,43 +73,58 @@ export const pizzaDelivery = {
     { place: 'Ženklava, Veřovice', min: 350, fee: 30 },
   ],
   freeOver: 600,
-  closing: 'Těšíme se na vaše objednávky! ❤️',
 } as const
+
+export const marqueeItems = [
+  'Těšíme se na vás',
+  'Areál Mořkov',
+  `Pizzu objednávejte na ${pizzaDelivery.phone}`,
+] as const
+
+export const pizzaOlymp = {
+  name: 'Pizza Olymp',
+  url: 'https://pizzaolymp.cz',
+  hostname: 'pizzaolymp.cz',
+} as const
+
+export const sisterBrands: SisterBrand[] = [
+  {
+    id: 'pizza-olymp',
+    name: pizzaOlymp.name,
+    url: pizzaOlymp.url,
+    hostname: pizzaOlymp.hostname,
+    logo: images.pizzaOlymp,
+  },
+]
 
 export const kempAccommodation = [
   {
     id: 'chatka-4',
     title: '4-lůžkové chatky',
-    description:
-      'Ideální pro rodiny nebo partu přátel. Plně vybavené pro vaše maximální pohodlí.',
     price: '2000,- / noc',
-    size: 'large' as const,
-    image: images.campIntro,
+    formValue: '4-lůžková chatka',
+    image: galleryImagePath('camp', 'camp-3.jpg'),
   },
   {
     id: 'chatka-2',
     title: '2-lůžkové chatky',
-    description: 'Útulné a romantické útočiště pro páry hledající soukromí v přírodě.',
     price: '1000,- / noc',
-    size: 'medium' as const,
-    image: images.campIntro,
+    formValue: '2-lůžková chatka',
+    image: galleryImagePath('camp', 'camp-2.jpg'),
   },
   {
     id: 'karavan',
     title: 'Stání pro karavany',
-    description: 'Prostorná místa s přípojkami pro váš mobilní domov na kolech.',
     price: '250,- / noc',
-    size: 'small' as const,
-    image: images.campIntro,
+    formValue: 'Místo pro karavan',
+    image: galleryImagePath('camp', 'camp-4.jpg'),
   },
   {
     id: 'stan',
     title: 'Místa pro stany',
-    description:
-      'Zažijte pravé kouzlo kempování a usínejte pod hvězdami na travnatých plochách.',
     price: 'od 100,- / noc',
-    size: 'wide' as const,
-    image: images.campIntro,
+    formValue: '',
+    image: galleryImagePath('camp', 'camp-1.jpg'),
   },
 ] as const
 
@@ -117,14 +140,14 @@ export const kempPricing = [
 ] as const
 
 export const kempIntro = {
-  title: 'Klid, pohoda a dobrodružství',
-  body: 'Utečte od každodenního shonu a najděte své útočiště v našem kempu, který je obklopený uklidňující přírodou a přitom jen pár kroků od pohodlí naší restaurace. Ať už jste dobrodruh se stanem, cestovatel s karavanem, nebo hledáte komfort našich chatek, máme pro vás to pravé místo k odpočinku.',
+  title: 'Náš kemp',
+  body: 'Kemp je obklopený přírodou a je jen pár kroků od naší restaurace. Nabízíme chatky, stání pro karavany i místa pro stany.',
   image: images.campIntro,
 } as const
 
 export const poolInfo = {
-  title: 'Vodní radovánky po celý den',
-  body: 'Naše koupaliště, které prošlo v roce 2008 celkovou rekonstrukcí, nabízí velký plavecký bazén o velikosti 33×15 m s parádní skluzavkou. Pro nejmenší návštěvníky máme připravené bezpečné dětské brouzdaliště.',
+  title: 'Koupaliště',
+  body: 'Koupaliště prošlo v roce 2008 celkovou rekonstrukcí. Plavecký bazén má rozměry 33×15 m se skluzavkou. Pro nejmenší návštěvníky je připravené dětské brouzdaliště.',
   image: images.poolIntro,
   hours: [
     { label: 'V sezóně (červenec – srpen)', time: '9:00 – 20:00' },
@@ -151,21 +174,8 @@ export const poolInfo = {
   ],
 } as const
 
-export const poolSortiment = [
-  { name: 'Zmrzlina / nanuk', price: 'od 25,-' },
-  { name: 'Točená limonáda 0,3 l', price: '35,-' },
-  { name: 'Točená limonáda 0,5 l', price: '45,-' },
-  { name: 'Voda perlivá / neperlivá 0,5 l', price: '30,-' },
-  { name: 'Káva', price: '45,-' },
-  { name: 'Pivo 0,5 l', price: '55,-' },
-  { name: 'Klobása v housce', price: '85,-' },
-  { name: 'Hranolky', price: '65,-' },
-  { name: 'Párek v rohlíku', price: '55,-' },
-] as const
-
 export const restaurantInfo = {
   title: 'Restaurace Podhora',
-  subtitle: 'Srdečně vás zveme k příjemnému posezení v Mořkově.',
   intro:
     'Naše restaurace se nachází hned vedle koupaliště v klidném prostředí, které je ideální pro relaxaci a dobré jídlo. Nabízíme velkorysé prostory pro každou příležitost.',
   image: images.restaurantIntro,
@@ -179,17 +189,8 @@ export const restaurantInfo = {
   features: [
     { title: 'Restaurace & salonek', desc: 'Vnitřní kapacita až 90 osob' },
     { title: 'Venkovní terasy', desc: 'Kapacita až 100 osob' },
-    {
-      title: 'Rodinné oslavy & svatby',
-      desc: 'Uspořádejte u nás nezapomenutelnou oslavu v soukromí salonku nebo hlavního sálu',
-    },
-    {
-      title: 'Firemní večírky a školení',
-      desc: 'Ideální prostory a technické zázemí pro firemní akce a prezentace',
-    },
-    {
-      title: 'Společenské akce',
-      desc: 'V létě ožívá naše pódium živou hudbou – skvělé místo pro setkání s přáteli',
-    },
+    { title: 'Rodinné oslavy & svatby', desc: 'Salónek nebo hlavní sál' },
+    { title: 'Firemní večírky a školení', desc: 'Prostory a technické zázemí' },
+    { title: 'Společenské akce', desc: 'V létě pódium s živou hudbou' },
   ],
 } as const

@@ -49,7 +49,7 @@ export function AboutSection() {
       <CornerOrbitDecoration variant="dark" />
 
       <div className="relative z-10 mx-auto max-w-[1400px]">
-        <SectionHeading eyebrow="vítejte u vody" title={about.title} />
+        <SectionHeading title={about.title} />
 
         <div className="about-float grid gap-12 lg:grid-cols-[1fr_1.1fr] lg:items-center">
           <div className="relative z-10">

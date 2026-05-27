@@ -1,37 +1,57 @@
 import { motion } from 'framer-motion'
 import { kempAccommodation } from '@/data/site'
-import { PhotoBackground } from '@/components/ui/PhotoBackground'
+import { galleryFallback } from '@/data/gallery'
+import { BrutalButton } from '@/components/ui/BrutalButton'
 
-const sizeClasses = {
-  large: 'md:col-span-2 md:row-span-2',
-  medium: 'md:col-span-1 md:row-span-2',
-  small: 'md:col-span-1 md:row-span-1',
-  wide: 'md:col-span-2 md:row-span-1',
-} as const
+type Props = {
+  onOrder: (formValue: string) => void
+}
 
-export function BentoGrid() {
+export function BentoGrid({ onOrder }: Props) {
   return (
-    <div className="grid auto-rows-[200px] grid-cols-1 gap-4 md:grid-cols-3 md:auto-rows-[180px]">
+    <div className="grid gap-6 sm:grid-cols-2 xl:grid-cols-4">
       {kempAccommodation.map((item, i) => (
         <motion.article
           key={item.id}
-          className={`card-brutal-photo group relative isolate overflow-hidden ${sizeClasses[item.size]}`}
-          initial={{ opacity: 0, scale: 0.95 }}
-          whileInView={{ opacity: 1, scale: 1 }}
-          viewport={{ once: true }}
-          transition={{ delay: i * 0.06 }}
+          className="card-brutal group flex flex-col overflow-hidden"
+          initial={{ opacity: 0, y: 24 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: '-40px' }}
+          transition={{ delay: i * 0.07, duration: 0.4 }}
         >
-          <PhotoBackground src={item.image} overlayClassName="bg-surface/88" />
-          <div className="relative z-10 flex h-full min-h-[200px] flex-col justify-end p-4 md:p-6">
-            <div className="max-w-[85%]">
-              <h3 className="font-display text-2xl text-gold-gradient md:text-3xl">
-                {item.title}
-              </h3>
-              <p className="mt-2 font-sans text-xs text-muted md:text-sm">
-                {item.description}
-              </p>
-              <p className="mt-4 font-display text-lg text-gold-gradient">{item.price}</p>
-            </div>
+          <div className="relative aspect-[5/4] overflow-hidden border-b-4 border-foreground">
+            <img
+              src={item.image}
+              alt={item.title}
+              loading="lazy"
+              onError={(e) => {
+                e.currentTarget.src = galleryFallback.camp
+              }}
+              className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
+            />
+            <div
+              className="pointer-events-none absolute inset-0 bg-gradient-to-t from-surface via-surface/20 to-transparent"
+              aria-hidden
+            />
+            <span
+              className="font-display pointer-events-none absolute right-3 top-2 text-5xl leading-none text-foreground/15"
+              aria-hidden
+            >
+              {String(i + 1).padStart(2, '0')}
+            </span>
+          </div>
+
+          <div className="flex flex-1 flex-col gap-3 p-5 md:p-6">
+            <h3 className="font-display text-2xl text-gold-gradient md:text-3xl">{item.title}</h3>
+            <p className="font-display text-xl text-gold-500 md:text-2xl">{item.price}</p>
+            <BrutalButton
+              type="button"
+              variant="outline"
+              className="mt-auto w-full text-center"
+              onClick={() => onOrder(item.formValue)}
+            >
+              OBJEDNAT →
+            </BrutalButton>
           </div>
         </motion.article>
       ))}
