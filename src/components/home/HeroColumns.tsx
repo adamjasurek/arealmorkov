@@ -47,13 +47,6 @@ export function HeroColumns() {
                 loading={index === 0 ? 'eager' : 'lazy'}
                 fetchPriority={index === 0 ? 'high' : undefined}
               />
-              <span
-                className="font-display pointer-events-none absolute right-5 top-5 z-10 text-7xl leading-none text-foreground/10 md:right-6 md:top-6 md:text-8xl"
-                aria-hidden
-              >
-                {String(index + 1).padStart(2, '0')}
-              </span>
-
               <div className="relative z-10 flex flex-1 flex-col p-7 md:p-9 lg:p-10">
                 <figure
                   className="hero-polaroid mb-7 w-[62%] max-w-[280px] border-4 border-foreground bg-[#fefefe] p-2 pb-10 shadow-brutal md:max-w-[320px]"

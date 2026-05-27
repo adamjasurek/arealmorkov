@@ -33,12 +33,6 @@ export function BentoGrid({ onOrder }: Props) {
               className="pointer-events-none absolute inset-0 bg-gradient-to-t from-surface via-surface/20 to-transparent"
               aria-hidden
             />
-            <span
-              className="font-display pointer-events-none absolute right-3 top-2 text-5xl leading-none text-foreground/15"
-              aria-hidden
-            >
-              {String(i + 1).padStart(2, '0')}
-            </span>
           </div>
 
           <div className="flex flex-1 flex-col gap-3 p-5 md:p-6">
