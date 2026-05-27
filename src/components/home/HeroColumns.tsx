@@ -1,8 +1,8 @@
 import { useRef } from 'react'
+import { Link } from 'react-router-dom'
 import { useGSAP } from '@gsap/react'
 import gsap from 'gsap'
 import { heroColumns } from '@/data/site'
-import { BrutalButton } from '@/components/ui/BrutalButton'
 import { PhotoBackground } from '@/components/ui/PhotoBackground'
 
 gsap.registerPlugin(useGSAP)
@@ -34,54 +34,82 @@ export function HeroColumns() {
       className="relative isolate flex h-full w-full max-w-full items-start overflow-x-hidden bg-gold-gradient"
       aria-label="Hlavní nabídka areálu"
     >
-      <div className="relative z-10 mx-auto grid h-full w-full max-w-[1400px] min-w-0 -translate-y-4 gap-7 px-4 py-6 md:grid-cols-3 md:grid-rows-[1fr] md:items-stretch md:gap-8 md:px-6 md:py-10 md:-translate-y-6 lg:gap-10 lg:py-12 lg:-translate-y-8">
+      <div className="relative z-10 mx-auto grid h-full w-full max-w-[1800px] min-w-0 -translate-y-4 gap-7 px-6 py-6 md:grid-cols-3 md:grid-rows-[1fr] md:items-stretch md:gap-10 md:px-10 md:py-10 md:-translate-y-6 lg:gap-12 lg:px-14 lg:py-12 lg:-translate-y-8">
         {heroColumns.map((col, index) => {
           const card = (
-            <div className="hero-pillar card-brutal-photo group relative isolate flex h-full min-h-[560px] flex-col overflow-hidden md:min-h-0">
-            <PhotoBackground
-              src={col.image}
-              overlayClassName="bg-surface/85"
-              loading={index === 0 ? 'eager' : 'lazy'}
-              fetchPriority={index === 0 ? 'high' : undefined}
-            />
-            <div className="relative z-10 flex flex-1 flex-col p-7 md:p-9 lg:p-10">
-              <figure
-                className="hero-polaroid mb-7 w-[62%] max-w-[280px] border-4 border-foreground bg-[#fefefe] p-2 pb-10 shadow-brutal md:max-w-[320px]"
-                style={{ transform: `rotate(${col.rotate}deg)` }}
+            <Link
+              to={col.href}
+              className="hero-pillar card-brutal-photo group relative isolate flex h-full min-h-[560px] flex-col overflow-hidden focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-gold-500 md:min-h-0"
+            >
+              <PhotoBackground
+                src={col.image}
+                overlayClassName="bg-surface/85"
+                loading={index === 0 ? 'eager' : 'lazy'}
+                fetchPriority={index === 0 ? 'high' : undefined}
+              />
+              <span
+                className="font-display pointer-events-none absolute right-5 top-5 z-10 text-7xl leading-none text-foreground/10 md:right-6 md:top-6 md:text-8xl"
+                aria-hidden
               >
-                <img
-                  src={col.image}
-                  alt=""
-                  aria-hidden
-                  loading={index === 0 ? 'eager' : 'lazy'}
-                  fetchPriority={index === 0 ? 'high' : undefined}
-                  className="aspect-[4/5] w-full object-cover"
-                />
-              </figure>
+                {String(index + 1).padStart(2, '0')}
+              </span>
 
-              <h2 className="font-display text-6xl text-gold-gradient md:text-[3.75rem] lg:text-[4.1rem]">
-                {col.title}
-              </h2>
+              <div className="relative z-10 flex flex-1 flex-col p-7 md:p-9 lg:p-10">
+                <figure
+                  className="hero-polaroid mb-7 w-[62%] max-w-[280px] border-4 border-foreground bg-[#fefefe] p-2 pb-10 shadow-brutal md:max-w-[320px]"
+                  style={{ transform: `rotate(${col.rotate}deg)` }}
+                >
+                  <img
+                    src={col.image}
+                    alt=""
+                    aria-hidden
+                    loading={index === 0 ? 'eager' : 'lazy'}
+                    fetchPriority={index === 0 ? 'high' : undefined}
+                    className="aspect-[4/5] w-full object-cover"
+                  />
+                </figure>
 
-              <p className="mt-4 flex-1 font-sans text-lg leading-relaxed text-muted md:text-xl">
-                {col.description}
-              </p>
+                <h2 className="font-display text-6xl text-gold-gradient md:text-[3.75rem] lg:text-[4.1rem]">
+                  {col.title}
+                </h2>
 
-              <BrutalButton to={col.href} className="mt-9 w-full text-center md:w-auto">
-                {col.cta} →
-              </BrutalButton>
-            </div>
-            </div>
+                <p className="mt-4 flex-1 font-sans text-lg leading-relaxed text-muted md:text-xl">
+                  {col.description}
+                </p>
+
+                <span className="btn-brutal mt-9 w-full text-center md:w-auto">
+                  {col.cta} →
+                </span>
+              </div>
+            </Link>
           )
 
-          const tiltClass =
-            index === 0 ? '-rotate-2 md:-rotate-3' : index === 2 ? 'rotate-2 md:rotate-3' : ''
+          if (index === 0) {
+            return (
+              <div
+                key={col.id}
+                className={`h-full min-w-0 ${stepClass[index]}`}
+                style={{ transform: 'translate(-10px, 10px) rotate(-3deg)' }}
+              >
+                {card}
+              </div>
+            )
+          }
+
+          if (index === 2) {
+            return (
+              <div
+                key={col.id}
+                className={`h-full min-w-0 ${stepClass[index]}`}
+                style={{ transform: 'translate(10px, 10px) rotate(3deg)' }}
+              >
+                {card}
+              </div>
+            )
+          }
 
           return (
-            <div
-              key={col.id}
-              className={`h-full min-w-0 overflow-hidden ${stepClass[index]} ${tiltClass}`}
-            >
+            <div key={col.id} className={`h-full min-w-0 ${stepClass[index]}`}>
               {card}
             </div>
           )

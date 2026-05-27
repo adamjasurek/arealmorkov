@@ -119,6 +119,11 @@
     box-shadow: var(--shadow-brutal);
   }
 
+  .hero-pillar {
+    text-decoration: none;
+    color: inherit;
+  }
+
   .hero-polaroid {
     transition: transform 0.3s ease-out;
   }
