@@ -5,6 +5,10 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
+    "dev:api": "vercel dev --listen 3000",
+    "seed": "tsx scripts/seed-json.ts",
+    "images:optimize": "node scripts/optimize-images.mjs",
+    "prebuild": "npm run images:optimize",
     "build": "tsc -b && vite build",
     "lint": "eslint .",
     "preview": "vite preview"
@@ -12,10 +16,12 @@
   "dependencies": {
     "@emailjs/browser": "^4.4.1",
     "@gsap/react": "^2.1.2",
+    "@tanstack/react-query": "^5.101.2",
     "framer-motion": "^12.40.0",
     "gsap": "^3.15.0",
     "react": "^19.2.6",
     "react-dom": "^19.2.6",
+    "react-hot-toast": "^2.6.0",
     "react-router-dom": "^7.15.1"
   },
   "devDependencies": {
@@ -29,9 +35,11 @@
     "eslint-plugin-react-hooks": "^7.1.1",
     "eslint-plugin-react-refresh": "^0.5.2",
     "globals": "^17.6.0",
+    "sharp": "^0.35.2",
     "tailwindcss": "^4.3.0",
+    "tsx": "^4.22.4",
     "typescript": "~6.0.2",
-    "typescript-eslint": "^8.59.2",
+    "typescript-eslint": "^8.62.0",
     "vite": "^8.0.12"
   }
 }

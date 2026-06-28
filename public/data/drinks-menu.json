@@ -1,0 +1,303 @@
+{
+  "title": "Nápojový lístek",
+  "sections": [
+    {
+      "id": "pivo-cepo",
+      "title": "Pivo čepované",
+      "dualSize": true,
+      "items": [
+        {
+          "name": "Radegast Rázná 10°",
+          "price05": "41,-",
+          "price03": "27,-"
+        },
+        {
+          "name": "Radegast Ryze Hořká 12°",
+          "price05": "45,-",
+          "price03": "30,-"
+        },
+        {
+          "name": "Kozel Černý 10°",
+          "price05": "45,-",
+          "price03": "30,-"
+        },
+        {
+          "name": "Řezané pivo",
+          "price05": "45,-",
+          "price03": "30,-"
+        },
+        {
+          "name": "Birell Pomelo Grep",
+          "price05": "45,-",
+          "price03": "30,-"
+        }
+      ]
+    },
+    {
+      "id": "pivo-lahv",
+      "title": "Pivo lahvové a cider",
+      "items": [
+        {
+          "name": "0,5l Birell Polotmavý/Světlý",
+          "price": "41,-"
+        },
+        {
+          "name": "0,33l Frisco",
+          "price": "45,-"
+        }
+      ]
+    },
+    {
+      "id": "pivo-plech",
+      "title": "Pivo plech",
+      "items": [
+        {
+          "name": "0,5l Radegast Rázná 10°",
+          "price": "41,-"
+        },
+        {
+          "name": "0,5l Radegast Ryze Hořká 12°",
+          "price": "45,-"
+        },
+        {
+          "name": "0,5l Birell Světlý",
+          "price": "41,-"
+        }
+      ]
+    },
+    {
+      "id": "nealko",
+      "title": "Nealkoholické nápoje",
+      "dualSize": true,
+      "items": [
+        {
+          "name": "Čepovaná kofola",
+          "price05": "45,-",
+          "price03": "30,-"
+        },
+        {
+          "name": "0,33l Coca-Cola",
+          "price": "45,-"
+        },
+        {
+          "name": "0,33l Fanta",
+          "price": "45,-"
+        },
+        {
+          "name": "0,25l Cappy",
+          "price": "45,-"
+        },
+        {
+          "name": "0,25l Tonic",
+          "price": "45,-"
+        },
+        {
+          "name": "0,3l Natura voda",
+          "price": "30,-"
+        },
+        {
+          "name": "0,25l Fuze Tea",
+          "price": "45,-"
+        },
+        {
+          "name": "0,33l Capri-Sun",
+          "price": "40,-"
+        },
+        {
+          "name": "0,25l Fruko",
+          "price": "20,-"
+        },
+        {
+          "name": "0,5l Kubík",
+          "price": "40,-"
+        },
+        {
+          "name": "1l Džbán vody",
+          "price": "55,-"
+        }
+      ]
+    },
+    {
+      "id": "teple",
+      "title": "Teplé nápoje",
+      "items": [
+        {
+          "name": "Espresso",
+          "price": "45,-"
+        },
+        {
+          "name": "Lungo",
+          "price": "45,-"
+        },
+        {
+          "name": "Cappuccino",
+          "price": "55,-"
+        },
+        {
+          "name": "Caffé Latte",
+          "price": "65,-"
+        },
+        {
+          "name": "Turecká káva",
+          "price": "45,-"
+        },
+        {
+          "name": "Čaj",
+          "price": "35,-"
+        }
+      ]
+    },
+    {
+      "id": "vino",
+      "title": "Víno – rozlévané",
+      "items": [
+        {
+          "name": "0,75l Savignon",
+          "price": "160,-"
+        },
+        {
+          "name": "0,75l Pálava",
+          "price": "260,-"
+        },
+        {
+          "name": "Prosecco",
+          "price": "260,-"
+        },
+        {
+          "name": "Sekt",
+          "price": "250,-"
+        },
+        {
+          "name": "Bílé rozlévané 0,1l",
+          "price": "26,-"
+        },
+        {
+          "name": "Červené rozlévané 0,1l",
+          "price": "26,-"
+        },
+        {
+          "name": "Karafa vody",
+          "price": "55,-"
+        }
+      ]
+    },
+    {
+      "id": "alkohol",
+      "title": "Alkoholické nápoje",
+      "items": [
+        {
+          "name": "Finlandia 4cl",
+          "price": "60,-"
+        },
+        {
+          "name": "Hanácká vodka 4cl",
+          "price": "40,-"
+        },
+        {
+          "name": "Božkov rum 4cl",
+          "price": "40,-"
+        },
+        {
+          "name": "Republica rum 4cl",
+          "price": "55,-"
+        },
+        {
+          "name": "Diplomatico 4cl",
+          "price": "75,-"
+        },
+        {
+          "name": "Jack Daniels 4cl",
+          "price": "65,-"
+        },
+        {
+          "name": "Jack Daniels Fire 4cl",
+          "price": "65,-"
+        },
+        {
+          "name": "Jack Daniels Honey 4cl",
+          "price": "65,-"
+        },
+        {
+          "name": "Jack Daniels Jablko 4cl",
+          "price": "65,-"
+        },
+        {
+          "name": "Tullamore Dew 4cl",
+          "price": "60,-"
+        },
+        {
+          "name": "Grant’s 4cl",
+          "price": "55,-"
+        },
+        {
+          "name": "Metaxa ***** 4cl",
+          "price": "65,-"
+        },
+        {
+          "name": "Jameson 4cl",
+          "price": "60,-"
+        },
+        {
+          "name": "Beefeater Originál 4cl",
+          "price": "55,-"
+        },
+        {
+          "name": "Beefeater Růžový 4cl",
+          "price": "55,-"
+        },
+        {
+          "name": "Jägermeister 4cl",
+          "price": "55,-"
+        },
+        {
+          "name": "Fernet Stock 4cl",
+          "price": "45,-"
+        },
+        {
+          "name": "Fernet Stock Citrus 4cl",
+          "price": "45,-"
+        },
+        {
+          "name": "Stará Myslivecká 4cl",
+          "price": "45,-"
+        },
+        {
+          "name": "Jelínek slivovice 4cl",
+          "price": "45,-"
+        },
+        {
+          "name": "Becherovka Originál 4cl",
+          "price": "45,-"
+        },
+        {
+          "name": "Becherovka Lemond 4cl",
+          "price": "45,-"
+        },
+        {
+          "name": "Jelzin zlatý 4cl",
+          "price": "40,-"
+        },
+        {
+          "name": "Jelzin Jablko 4cl",
+          "price": "40,-"
+        },
+        {
+          "name": "Puškin 4cl",
+          "price": "40,-"
+        },
+        {
+          "name": "Zelená Pepermint 4cl",
+          "price": "40,-"
+        },
+        {
+          "name": "Griotka 4cl",
+          "price": "40,-"
+        },
+        {
+          "name": "Borovička (koniferka) 4cl",
+          "price": "40,-"
+        }
+      ]
+    }
+  ]
+}

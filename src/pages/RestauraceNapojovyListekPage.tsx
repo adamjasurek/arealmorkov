@@ -3,7 +3,7 @@ import { MenuPageLayout } from '@/components/restaurace/MenuPageLayout'
 
 export function RestauraceNapojovyListekPage() {
   return (
-    <MenuPageLayout>
+    <MenuPageLayout pdfType="napoje">
       <DrinksMenu />
     </MenuPageLayout>
   )

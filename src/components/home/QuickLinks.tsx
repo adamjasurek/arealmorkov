@@ -1,29 +1,31 @@
 import { Link } from 'react-router-dom'
 import { motion } from 'framer-motion'
-import { pizzaDelivery } from '@/data/site'
-
-const cards = [
-  {
-    title: 'Rozvoz pizzy',
-    desc: `Objednávejte na ☎ ${pizzaDelivery.phone}`,
-    to: '/restaurace',
-    rotate: -2,
-  },
-  {
-    title: 'Rezervace kempu',
-    desc: 'Chatky, stany, karavany – poptávka online',
-    to: '/kemp',
-    rotate: 1,
-  },
-  {
-    title: 'Teplota vody',
-    desc: 'Aktuální teplota bazénu',
-    to: '/koupaliste',
-    rotate: -1,
-  },
-]
+import { useMergedSiteContent } from '@/hooks/useMergedSiteContent'
 
 export function QuickLinks() {
+  const { data: site } = useMergedSiteContent()
+
+  const cards = [
+    {
+      title: 'Rozvoz pizzy',
+      desc: `Objednávejte na ☎ ${site.pizzaDelivery.phone}`,
+      to: '/restaurace',
+      rotate: -2,
+    },
+    {
+      title: 'Rezervace kempu',
+      desc: 'Chatky, stany, karavany – poptávka online',
+      to: '/kemp',
+      rotate: 1,
+    },
+    {
+      title: 'Teplota vody',
+      desc: 'Aktuální teplota bazénu',
+      to: '/koupaliste',
+      rotate: -1,
+    },
+  ]
+
   return (
     <section className="px-4 py-16 md:px-6">
       <div className="mx-auto grid max-w-[1400px] gap-6 md:grid-cols-3">

@@ -3,7 +3,7 @@ import { MenuPageLayout } from '@/components/restaurace/MenuPageLayout'
 
 export function RestauraceStalaNabidkaPage() {
   return (
-    <MenuPageLayout>
+    <MenuPageLayout pdfType="stala">
       <FoodMenu />
     </MenuPageLayout>
   )

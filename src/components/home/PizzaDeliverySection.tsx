@@ -1,6 +1,9 @@
-import { pizzaDelivery } from '@/data/site'
+import { useMergedSiteContent } from '@/hooks/useMergedSiteContent'
 
 export function PizzaDeliverySection() {
+  const { data: site } = useMergedSiteContent()
+  const pizzaDelivery = site.pizzaDelivery
+
   return (
     <section className="border-y-4 border-foreground bg-surface px-4 py-16 md:px-6">
       <div className="mx-auto max-w-[900px] text-center">

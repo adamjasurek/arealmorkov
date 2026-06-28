@@ -1,4 +1,4 @@
-import heroAreal from '@/assets/hero.png'
+import heroAreal from '@/assets/hero.webp'
 import kemp from '@/assets/kemp.webp'
 import koupaliste from '@/assets/koupaliste.webp'
 import restaurace from '@/assets/restaurace.webp'

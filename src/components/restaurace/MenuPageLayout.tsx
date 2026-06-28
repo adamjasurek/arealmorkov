@@ -1,11 +1,14 @@
-import { Link } from 'react-router-dom'
 import type { ReactNode } from 'react'
+import { Link } from 'react-router-dom'
+import type { MenuPdfType } from '@/types/content'
+import { MenuPdfDownload } from '@/components/restaurace/MenuPdfDownload'
 
 type Props = {
   children: ReactNode
+  pdfType?: MenuPdfType
 }
 
-export function MenuPageLayout({ children }: Props) {
+export function MenuPageLayout({ children, pdfType }: Props) {
   return (
     <>
       <section className="border-b-4 border-foreground px-4 py-8 md:px-6">
@@ -19,7 +22,10 @@ export function MenuPageLayout({ children }: Props) {
         </div>
       </section>
       <section className="px-4 py-16 md:px-6">
-        <div className="mx-auto max-w-[1400px]">{children}</div>
+        <div className="mx-auto max-w-[1400px]">
+          {pdfType ? <MenuPdfDownload type={pdfType} /> : null}
+          {children}
+        </div>
       </section>
     </>
   )

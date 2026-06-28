@@ -103,28 +103,28 @@ export const kempAccommodation = [
     title: '4-lůžkové chatky',
     price: '2000,- / noc',
     formValue: '4-lůžková chatka',
-    image: galleryImagePath('camp', 'camp-3.jpg'),
+    image: galleryImagePath('camp', 'camp-3.webp'),
   },
   {
     id: 'chatka-2',
     title: '2-lůžkové chatky',
     price: '1000,- / noc',
     formValue: '2-lůžková chatka',
-    image: galleryImagePath('camp', 'camp-2.jpg'),
+    image: galleryImagePath('camp', 'camp-2.webp'),
   },
   {
     id: 'karavan',
     title: 'Stání pro karavany',
     price: '250,- / noc',
     formValue: 'Místo pro karavan',
-    image: galleryImagePath('camp', 'camp-4.jpg'),
+    image: galleryImagePath('camp', 'camp-4.webp'),
   },
   {
     id: 'stan',
     title: 'Místa pro stany',
     price: 'od 100,- / noc',
     formValue: '',
-    image: galleryImagePath('camp', 'camp-1.jpg'),
+    image: galleryImagePath('camp', 'camp-1.webp'),
   },
 ] as const
 

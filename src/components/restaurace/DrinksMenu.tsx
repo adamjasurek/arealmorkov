@@ -1,5 +1,5 @@
-import { drinksMenuSections, drinksMenuTitle } from '@/data/drinks'
-import type { DrinkRow, DrinkSection } from '@/data/drinks'
+import { usePublicDrinksMenu } from '@/hooks/usePublicContent'
+import type { DrinkRow, DrinkSection } from '@/types/content'
 
 function PriceCell({ value }: { value: string }) {
   return <span className="font-display text-lg text-gold-500">{value}</span>
@@ -57,12 +57,18 @@ function DrinkSectionTable({ section }: { section: DrinkSection }) {
 }
 
 export function DrinksMenu() {
+  const { data, isLoading } = usePublicDrinksMenu()
+
+  if (isLoading || !data) {
+    return <p className="font-sans text-muted">Načítám nápojový lístek…</p>
+  }
+
   return (
     <div>
-      <h3 className="font-display text-4xl text-gold-gradient md:text-5xl">{drinksMenuTitle}</h3>
+      <h3 className="font-display text-4xl text-gold-gradient md:text-5xl">{data.title}</h3>
       <p className="mt-2 font-sans text-muted">Restaurace Podhora</p>
       <div className="mt-8 grid gap-6 lg:grid-cols-2">
-        {drinksMenuSections.map((section) => (
+        {data.sections.map((section) => (
           <DrinkSectionTable key={section.id} section={section} />
         ))}
       </div>

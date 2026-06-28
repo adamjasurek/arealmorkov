@@ -1,0 +1,16 @@
+{
+  "title": "Víkendové menu",
+  "note": "Platí každý víkend v sezóně",
+  "items": [
+    {
+      "name": "Nedělní pečené koleno",
+      "description": "s přílohami",
+      "price": "285,-"
+    },
+    {
+      "name": "Víkendová pizza speciál",
+      "description": "dle aktuální nabídky",
+      "price": "219,-"
+    }
+  ]
+}

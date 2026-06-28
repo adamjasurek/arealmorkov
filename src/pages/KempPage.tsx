@@ -1,13 +1,15 @@
 import { useState } from 'react'
-import { kempIntro, kempPricing } from '@/data/site'
+import { kempIntro } from '@/data/site'
 import { GalleryGrid } from '@/components/ui/GalleryGrid'
 import { SectionHeading } from '@/components/ui/SectionHeading'
 import { BentoGrid } from '@/components/kemp/BentoGrid'
 import { ReservationForm } from '@/components/kemp/ReservationForm'
 import { PhotoBackground } from '@/components/ui/PhotoBackground'
+import { useMergedSiteContent } from '@/hooks/useMergedSiteContent'
 
 export function KempPage() {
   const [selectedAccommodation, setSelectedAccommodation] = useState('')
+  const { data: site } = useMergedSiteContent()
 
   function scrollToReservation(formValue: string) {
     if (formValue) setSelectedAccommodation(formValue)
@@ -42,7 +44,7 @@ export function KempPage() {
             <h3 className="font-display mb-6 text-4xl text-gold-gradient">Ceník ubytování</h3>
             <table className="w-full border-collapse font-sans">
               <tbody>
-                {kempPricing.map((row) => (
+                {site.kempPricing.map((row) => (
                   <tr key={row.label} className="border-b-2 border-foreground/20">
                     <td className="py-3 pr-4">{row.label}</td>
                     <td className="py-3 text-right font-display text-xl text-gold-500">

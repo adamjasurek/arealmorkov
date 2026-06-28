@@ -1,13 +1,19 @@
-import { pizzaDelivery, restaurantInfo } from '@/data/site'
+import { restaurantInfo } from '@/data/site'
 import { SisterBrandsSection } from '@/components/restaurace/SisterBrandsSection'
 import { restaurantMenuLinks } from '@/data/restaurantMenus'
 import { GalleryGrid } from '@/components/ui/GalleryGrid'
 import { SectionHeading } from '@/components/ui/SectionHeading'
 import { BrutalButton } from '@/components/ui/BrutalButton'
 import { PhotoBackground } from '@/components/ui/PhotoBackground'
-import { pizzaPromos } from '@/data/menu'
+import { useMergedSiteContent } from '@/hooks/useMergedSiteContent'
+import { usePublicFoodMenu } from '@/hooks/usePublicContent'
 
 export function RestauracePage() {
+  const { data: site } = useMergedSiteContent()
+  const { data: foodMenu } = usePublicFoodMenu()
+  const pizzaDelivery = site.pizzaDelivery
+  const pizzaPromos = foodMenu?.pizzaPromos ?? []
+
   return (
     <>
       <section className="relative isolate overflow-hidden border-b-4 border-foreground px-4 pt-10 pb-6 md:px-6 md:pt-12 md:pb-8">
@@ -35,7 +41,7 @@ export function RestauracePage() {
             <div className="card-brutal p-6">
               <p className="font-display text-2xl">Otevírací doba</p>
               <ul className="mt-3 space-y-1 font-sans">
-                {restaurantInfo.hours.map((h) => (
+                {site.restaurantHours.map((h) => (
                   <li key={h.days} className="flex justify-between gap-8">
                     <span className="font-medium">{h.days}</span>
                     <span className="text-muted">{h.time}</span>
@@ -53,17 +59,7 @@ export function RestauracePage() {
                       <BrutalButton to={item.to} className="w-full text-center">
                         {item.label}
                       </BrutalButton>
-                    ) : (
-                      <BrutalButton
-                        type="button"
-                        disabled
-                        variant="outline"
-                        className="w-full cursor-not-allowed text-center opacity-50"
-                        title="Brzy k dispozici"
-                      >
-                        {item.label}
-                      </BrutalButton>
-                    )}
+                    ) : null}
                   </li>
                 ))}
               </ul>

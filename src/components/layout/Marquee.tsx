@@ -5,7 +5,8 @@ import {
   type CSSProperties,
   type RefObject,
 } from 'react'
-import { marqueeItems } from '@/data/site'
+import { defaultSiteContent } from '@/lib/contentDefaults'
+import { usePublicSiteContent } from '@/hooks/usePublicContent'
 
 type Props = {
   items?: readonly string[]
@@ -61,10 +62,12 @@ function MarqueeGroup({
 }
 
 export function Marquee({
-  items = marqueeItems,
+  items: itemsProp,
   reverse = false,
   className = '',
 }: Props) {
+  const { data } = usePublicSiteContent()
+  const items = itemsProp ?? data?.marqueeItems ?? defaultSiteContent.marqueeItems
   const sequence = buildSequence(items)
   const bandRef = useRef<HTMLDivElement>(null)
   const groupMeasureRef = useRef<HTMLDivElement>(null)

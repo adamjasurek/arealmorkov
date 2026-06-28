@@ -13,7 +13,7 @@ export const aboutPolaroids = [
     size: 'md' as const,
   },
   {
-    src: galleryImagePath('pool', 'FB_IMG_1744872802311.jpg'),
+    src: galleryImagePath('pool', 'FB_IMG_1744872802311.webp'),
     alt: 'Koupaliště',
     rotate: 5,
     left: '28%',
@@ -22,7 +22,7 @@ export const aboutPolaroids = [
     size: 'sm' as const,
   },
   {
-    src: galleryImagePath('camp', 'IMG-20250612-WA0001.jpg'),
+    src: galleryImagePath('camp', 'IMG-20250612-WA0001.webp'),
     alt: 'Kemp',
     rotate: -4,
     left: '52%',
@@ -31,7 +31,7 @@ export const aboutPolaroids = [
     size: 'lg' as const,
   },
   {
-    src: galleryImagePath('restaurant', '20250508_084607.jpg'),
+    src: galleryImagePath('restaurant', '20250508_084607.webp'),
     alt: 'Restaurace',
     rotate: 9,
     left: '68%',
@@ -40,7 +40,7 @@ export const aboutPolaroids = [
     size: 'md' as const,
   },
   {
-    src: galleryImagePath('pool', 'FB_IMG_1744872841837.jpg'),
+    src: galleryImagePath('pool', 'FB_IMG_1744872841837.webp'),
     alt: 'Bazén',
     rotate: -6,
     left: '8%',
@@ -49,7 +49,7 @@ export const aboutPolaroids = [
     size: 'lg' as const,
   },
   {
-    src: galleryImagePath('camp', 'IMG-20250612-WA0002.jpg'),
+    src: galleryImagePath('camp', 'IMG-20250612-WA0002.webp'),
     alt: 'Chatky v kempu',
     rotate: 7,
     left: '38%',
@@ -58,7 +58,7 @@ export const aboutPolaroids = [
     size: 'md' as const,
   },
   {
-    src: galleryImagePath('restaurant', '20250503_115011.jpg'),
+    src: galleryImagePath('restaurant', '20250503_115011.webp'),
     alt: 'Restaurace Podhora',
     rotate: -10,
     left: '58%',
@@ -67,7 +67,7 @@ export const aboutPolaroids = [
     size: 'sm' as const,
   },
   {
-    src: galleryImagePath('camp', 'IMG-20250612-WA0000.jpg'),
+    src: galleryImagePath('camp', 'IMG-20250612-WA0000.webp'),
     alt: 'Příroda kolem areálu',
     rotate: 4,
     left: '18%',
@@ -76,7 +76,7 @@ export const aboutPolaroids = [
     size: 'md' as const,
   },
   {
-    src: galleryImagePath('pool', 'FB_IMG_1744872850552.jpg'),
+    src: galleryImagePath('pool', 'FB_IMG_1744872850552.webp'),
     alt: 'Koupaliště v létě',
     rotate: -5,
     left: '42%',
@@ -85,7 +85,7 @@ export const aboutPolaroids = [
     size: 'lg' as const,
   },
   {
-    src: galleryImagePath('restaurant', '20250512_084511.jpg'),
+    src: galleryImagePath('restaurant', '20250512_084511.webp'),
     alt: 'Posezení u vody',
     rotate: 8,
     left: '62%',
@@ -94,7 +94,7 @@ export const aboutPolaroids = [
     size: 'md' as const,
   },
   {
-    src: galleryImagePath('camp', 'IMG-20250612-WA0003.jpg'),
+    src: galleryImagePath('camp', 'IMG-20250612-WA0003.webp'),
     alt: 'Kempování',
     rotate: -7,
     left: '2%',
@@ -103,7 +103,7 @@ export const aboutPolaroids = [
     size: 'sm' as const,
   },
   {
-    src: galleryImagePath('restaurant', '20250521_173734.jpg'),
+    src: galleryImagePath('restaurant', '20250521_173734.webp'),
     alt: 'Areál z výšky',
     rotate: 3,
     left: '72%',

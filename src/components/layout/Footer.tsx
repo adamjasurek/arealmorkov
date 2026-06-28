@@ -1,7 +1,8 @@
 import type { ReactNode } from 'react'
-import { contact, pizzaDelivery } from '@/data/site'
+import { contact } from '@/data/site'
 import { Logo } from '@/components/ui/Logo'
 import { Marquee } from '@/components/layout/Marquee'
+import { useMergedSiteContent } from '@/hooks/useMergedSiteContent'
 
 function FooterHeading({ children }: { children: ReactNode }) {
   return (
@@ -10,6 +11,9 @@ function FooterHeading({ children }: { children: ReactNode }) {
 }
 
 export function Footer() {
+  const { data: site } = useMergedSiteContent()
+  const pizzaDelivery = site.pizzaDelivery
+
   return (
     <footer className="relative mt-20 w-full max-w-full overflow-x-hidden border-t-4 border-foreground bg-surface">
       <Marquee className="border-t-0" />

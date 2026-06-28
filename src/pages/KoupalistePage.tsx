@@ -4,8 +4,11 @@ import { BrutalButton } from '@/components/ui/BrutalButton'
 import { SectionHeading } from '@/components/ui/SectionHeading'
 import { WaterTempDisplay } from '@/components/koupaliste/WaterTempDisplay'
 import { PhotoBackground } from '@/components/ui/PhotoBackground'
+import { useMergedSiteContent } from '@/hooks/useMergedSiteContent'
 
 export function KoupalistePage() {
+  const { data: site } = useMergedSiteContent()
+
   return (
     <div>
       <section className="relative isolate overflow-hidden border-b-4 border-foreground px-4 py-16 md:px-6">
@@ -29,7 +32,7 @@ export function KoupalistePage() {
             <div className="card-brutal p-6">
               <h4 className="font-display text-2xl">Provozní doba</h4>
               <ul className="mt-4 space-y-3 font-sans">
-                {poolInfo.hours.map((h) => (
+                {site.poolHours.map((h) => (
                   <li key={h.label}>
                     <span className="font-medium">{h.label}</span>
                     <br />
@@ -39,7 +42,7 @@ export function KoupalistePage() {
               </ul>
             </div>
             <ul className="space-y-3">
-              {poolInfo.admission.map((row) => (
+              {site.poolAdmission.map((row) => (
                 <li
                   key={row.label}
                   className="card-brutal flex flex-wrap items-center justify-between gap-2 p-4"

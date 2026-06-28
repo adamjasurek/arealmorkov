@@ -1,16 +1,18 @@
 import { motion } from 'framer-motion'
-import { kempAccommodation } from '@/data/site'
 import { galleryFallback } from '@/data/gallery'
 import { BrutalButton } from '@/components/ui/BrutalButton'
+import { useMergedSiteContent } from '@/hooks/useMergedSiteContent'
 
 type Props = {
   onOrder: (formValue: string) => void
 }
 
 export function BentoGrid({ onOrder }: Props) {
+  const { accommodation } = useMergedSiteContent()
+
   return (
     <div className="grid gap-6 sm:grid-cols-2 xl:grid-cols-4">
-      {kempAccommodation.map((item, i) => (
+      {accommodation.map((item, i) => (
         <motion.article
           key={item.id}
           className="card-brutal group flex flex-col overflow-hidden"
