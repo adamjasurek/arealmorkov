@@ -9,9 +9,9 @@ export function RootLayout() {
 
   return (
     <div
-      className={`home-fullscreen grid w-full max-w-full overflow-x-hidden ${
+      className={`grid w-full max-w-full overflow-x-hidden ${
         isHome
-          ? 'h-svh grid-rows-[auto_1fr] overflow-y-hidden'
+          ? 'home-fullscreen h-svh grid-rows-[auto_1fr] overflow-y-hidden'
           : 'min-h-svh grid-rows-[auto_1fr_auto]'
       }`}
     >
