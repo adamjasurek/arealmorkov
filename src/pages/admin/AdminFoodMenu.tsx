@@ -1,4 +1,5 @@
 import { AdminSaveBar } from '@/components/admin/AdminSaveBar'
+import { AdminCard, AdminInput, AdminLoading, AdminPageHeader } from '@/components/admin/ui'
 import { useAdminFoodMenu } from '@/hooks/admin/useAdminEditors'
 import type { PizzaItem } from '@/types/content'
 
@@ -12,13 +13,12 @@ function PizzaEditor({
   onChange: (items: PizzaItem[]) => void
 }) {
   return (
-    <div className="card-brutal space-y-4 p-4">
-      <h2 className="font-display text-2xl text-gold-gradient">{title}</h2>
+    <AdminCard className="space-y-4 p-5">
+      <h2 className="admin-h2">{title}</h2>
       {items.map((pizza, index) => (
-        <div key={pizza.num} className="space-y-2 border-b border-foreground/15 pb-4">
+        <div key={pizza.num} className="space-y-2 border-b border-[var(--admin-border)] pb-4 last:border-0">
           <div className="grid gap-2 md:grid-cols-2">
-            <input
-              className="input-brutal"
+            <AdminInput
               value={pizza.name}
               placeholder="Název"
               onChange={(e) => {
@@ -27,8 +27,7 @@ function PizzaEditor({
                 onChange(next)
               }}
             />
-            <input
-              className="input-brutal"
+            <AdminInput
               value={pizza.ingredients}
               placeholder="Ingredience"
               onChange={(e) => {
@@ -39,8 +38,7 @@ function PizzaEditor({
             />
           </div>
           <div className="grid gap-2 sm:grid-cols-2">
-            <input
-              className="input-brutal"
+            <AdminInput
               value={pizza.price32}
               placeholder="Cena 32 cm"
               onChange={(e) => {
@@ -49,8 +47,7 @@ function PizzaEditor({
                 onChange(next)
               }}
             />
-            <input
-              className="input-brutal"
+            <AdminInput
               value={pizza.price45}
               placeholder="Cena 45 cm"
               onChange={(e) => {
@@ -62,7 +59,7 @@ function PizzaEditor({
           </div>
         </div>
       ))}
-    </div>
+    </AdminCard>
   )
 }
 
@@ -70,15 +67,17 @@ export function AdminFoodMenu() {
   const { menuQuery, data, setLocal, saveMutation } = useAdminFoodMenu()
 
   if (menuQuery.isLoading) {
-    return <p className="font-sans text-muted">Načítám…</p>
+    return <AdminLoading />
   }
 
   return (
     <div>
-      <h1 className="font-display text-4xl text-gold-gradient">Stálá nabídka</h1>
-      <p className="mt-2 font-sans text-muted">Upravte pizzu a ceny. Po změně nezapomeňte uložit.</p>
+      <AdminPageHeader
+        title="Stálá nabídka"
+        description="Upravte pizzu a ceny. Po změně nezapomeňte uložit."
+      />
 
-      <div className="mt-8 space-y-6">
+      <div className="space-y-6">
         <PizzaEditor
           title="Rajčatový základ"
           items={data.tomatoPizzas}

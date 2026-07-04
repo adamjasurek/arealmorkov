@@ -1,26 +1,29 @@
 import { AdminSaveBar } from '@/components/admin/AdminSaveBar'
+import { AdminCard, AdminInput, AdminLoading, AdminPageHeader } from '@/components/admin/ui'
 import { useAdminDrinksMenu } from '@/hooks/admin/useAdminEditors'
 
 export function AdminDrinksMenu() {
   const { menuQuery, data, setLocal, saveMutation } = useAdminDrinksMenu()
 
   if (menuQuery.isLoading) {
-    return <p className="font-sans text-muted">Načítám…</p>
+    return <AdminLoading />
   }
 
   return (
     <div>
-      <h1 className="font-display text-4xl text-gold-gradient">Nápojový lístek</h1>
-      <p className="mt-2 font-sans text-muted">Upravte nápoje a ceny podle sekcí.</p>
+      <AdminPageHeader
+        title="Nápojový lístek"
+        description="Upravte nápoje a ceny podle sekcí."
+      />
 
-      <div className="mt-8 space-y-6">
+      <div className="space-y-6">
         {data.sections.map((section, sectionIndex) => (
-          <div key={section.id} className="card-brutal space-y-3 p-5">
-            <h2 className="font-display text-2xl text-gold-gradient">{section.title}</h2>
+          <AdminCard key={section.id} className="space-y-3 p-5">
+            <h2 className="admin-h2">{section.title}</h2>
             {section.items.map((row, rowIndex) => (
               <div key={`${section.id}-${rowIndex}`} className="grid gap-2 md:grid-cols-4">
-                <input
-                  className="input-brutal md:col-span-2"
+                <AdminInput
+                  className="md:col-span-2"
                   value={row.name}
                   onChange={(e) =>
                     setLocal((prev) => ({
@@ -40,8 +43,7 @@ export function AdminDrinksMenu() {
                 />
                 {section.dualSize ? (
                   <>
-                    <input
-                      className="input-brutal"
+                    <AdminInput
                       value={row.price05 ?? ''}
                       placeholder="0,5l"
                       onChange={(e) =>
@@ -60,8 +62,7 @@ export function AdminDrinksMenu() {
                         }))
                       }
                     />
-                    <input
-                      className="input-brutal"
+                    <AdminInput
                       value={row.price03 ?? ''}
                       placeholder="0,3l"
                       onChange={(e) =>
@@ -82,8 +83,8 @@ export function AdminDrinksMenu() {
                     />
                   </>
                 ) : (
-                  <input
-                    className="input-brutal md:col-span-2"
+                  <AdminInput
+                    className="md:col-span-2"
                     value={row.price ?? ''}
                     placeholder="Cena"
                     onChange={(e) =>
@@ -105,7 +106,7 @@ export function AdminDrinksMenu() {
                 )}
               </div>
             ))}
-          </div>
+          </AdminCard>
         ))}
       </div>
 

@@ -1,7 +1,7 @@
 import { useRef, useState } from 'react'
 import { fileToBase64, uploadMenuPdf } from '@/api/adminApi'
 import { adminToast } from '@/lib/adminToast'
-import { BrutalButton } from '@/components/ui/BrutalButton'
+import { AdminButton, AdminCard, AdminPageHeader } from '@/components/admin/ui'
 import { useAdminMenuPdfs } from '@/hooks/admin/useAdminEditors'
 import type { MenuPdfType } from '@/types/content'
 import { useQueryClient } from '@tanstack/react-query'
@@ -43,17 +43,17 @@ function PdfUploadCard({ type, label }: { type: MenuPdfType; label: string }) {
   }
 
   return (
-    <div className="card-brutal space-y-3 p-5">
-      <h2 className="font-display text-xl text-gold-gradient">{label}</h2>
+    <AdminCard className="space-y-3 p-5">
+      <h2 className="admin-h2">{label}</h2>
       {currentPath ? (
-        <p className="font-sans text-sm text-muted">
+        <p className="text-sm text-[var(--admin-muted)]">
           Aktuální PDF:{' '}
-          <a href={currentPath} target="_blank" rel="noopener noreferrer" className="text-gold-500 underline">
+          <a href={currentPath} target="_blank" rel="noopener noreferrer" className="admin-link">
             zobrazit
           </a>
         </p>
       ) : (
-        <p className="font-sans text-sm text-muted">Zatím není nahráno žádné PDF.</p>
+        <p className="text-sm text-[var(--admin-muted)]">Zatím není nahráno žádné PDF.</p>
       )}
       <input
         ref={inputRef}
@@ -65,29 +65,27 @@ function PdfUploadCard({ type, label }: { type: MenuPdfType; label: string }) {
           if (file) void handleFile(file)
         }}
       />
-      <BrutalButton
-        type="button"
-        variant="outline"
+      <AdminButton
+        variant="secondary"
         className="w-full"
         disabled={uploading}
         onClick={() => inputRef.current?.click()}
       >
-        {uploading ? 'NAHRÁVÁM…' : 'NAHRÁT PDF →'}
-      </BrutalButton>
-    </div>
+        {uploading ? 'Nahrávám…' : 'Nahrát PDF'}
+      </AdminButton>
+    </AdminCard>
   )
 }
 
 export function AdminMenuPdfs() {
   return (
     <div>
-      <h1 className="font-display text-4xl text-gold-gradient">PDF menu</h1>
-      <p className="mt-2 font-sans text-muted">
-        Nahrajte PDF verzi jídelního lístku. Na webu se vedle strukturovaného menu zobrazí odkaz ke
-        stažení.
-      </p>
+      <AdminPageHeader
+        title="PDF menu"
+        description="Nahrajte PDF verzi jídelního lístku. Na webu se vedle strukturovaného menu zobrazí odkaz ke stažení."
+      />
 
-      <div className="mt-8 grid gap-4 sm:grid-cols-2">
+      <div className="grid gap-4 sm:grid-cols-2">
         {items.map((item) => (
           <PdfUploadCard key={item.type} type={item.type} label={item.label} />
         ))}

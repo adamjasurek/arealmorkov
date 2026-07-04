@@ -1,5 +1,6 @@
 import { Link } from 'react-router-dom'
 import { usePublicFoodMenu, usePublicWaterTemp } from '@/hooks/usePublicContent'
+import { AdminPageHeader } from '@/components/admin/ui'
 
 const sections = [
   { to: '/admin/teplota', label: 'Teplota vody', hint: 'Bazén a brouzdaliště' },
@@ -18,35 +19,37 @@ export function AdminDashboard() {
 
   return (
     <div>
-      <h1 className="font-display text-4xl text-gold-gradient">Přehled</h1>
-      <p className="mt-2 font-sans text-muted">Vyberte sekci, kterou chcete upravit.</p>
+      <AdminPageHeader
+        title="Přehled"
+        description="Vyberte sekci, kterou chcete upravit."
+      />
 
-      <div className="mt-8 grid gap-4 sm:grid-cols-2">
+      <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
         {sections.map((section) => (
           <Link
             key={section.to}
             to={section.to}
-            className="card-brutal block p-5 transition-transform hover:-translate-y-0.5"
+            className="admin-card admin-dashboard-card p-4"
           >
-            <p className="font-display text-2xl">{section.label}</p>
-            <p className="mt-1 font-sans text-sm text-muted">{section.hint}</p>
+            <p className="font-semibold text-[var(--admin-text)]">{section.label}</p>
+            <p className="mt-1 text-sm text-[var(--admin-muted)]">{section.hint}</p>
           </Link>
         ))}
       </div>
 
-      <div className="card-brutal mt-8 p-5 font-sans text-sm text-muted">
-        <p>
-          Aktuální teplota bazénu:{' '}
-          <strong className="text-foreground">
-            {water.data?.mainTemp != null ? `${water.data.mainTemp}°C` : '—'}
-          </strong>
-        </p>
-        <p className="mt-1">
-          Počet pizz ve stálé nabídce:{' '}
-          <strong className="text-foreground">
+      <div className="mt-8 grid gap-3 sm:grid-cols-2">
+        <div className="admin-stat">
+          <p className="admin-stat-label">Teplota bazénu</p>
+          <p className="admin-stat-value">
+            {water.data?.mainTemp != null ? `${water.data.mainTemp} °C` : '—'}
+          </p>
+        </div>
+        <div className="admin-stat">
+          <p className="admin-stat-label">Počet pizz ve stálé nabídce</p>
+          <p className="admin-stat-value">
             {(food.data?.tomatoPizzas.length ?? 0) + (food.data?.creamPizzas.length ?? 0)}
-          </strong>
-        </p>
+          </p>
+        </div>
       </div>
     </div>
   )

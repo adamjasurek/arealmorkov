@@ -1,7 +1,7 @@
 import { useState, type FormEvent } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { loginUser } from '@/api/adminApi'
-import { BrutalButton } from '@/components/ui/BrutalButton'
+import { AdminButton, AdminField, AdminInput } from '@/components/admin/ui'
 
 export function AdminLogin() {
   const navigate = useNavigate()
@@ -27,32 +27,32 @@ export function AdminLogin() {
   }
 
   return (
-    <section className="mx-auto flex min-h-screen max-w-lg items-center px-4 py-20 md:px-6">
-      <div className="w-full">
-        <h1 className="font-display text-5xl text-gold-gradient">Admin</h1>
-        <p className="mt-2 font-sans text-sm text-muted">Přihlášení do správy webu</p>
+    <div className="admin-shell admin-login-wrap">
+      <div className="admin-card admin-login-card">
+        <h1 className="admin-h1">Přihlášení</h1>
+        <p className="admin-desc">Správa obsahu webu Areál Mořkov</p>
 
-        <form onSubmit={(e) => { void handleSubmit(e) }} className="card-brutal mt-8 space-y-4 p-6">
-          <label className="block">
-            <span className="font-display text-sm uppercase">Heslo</span>
-            <input
+        <form onSubmit={(e) => { void handleSubmit(e) }} className="mt-6 space-y-4">
+          <AdminField label="Heslo">
+            <AdminInput
               name="password"
               type="password"
               required
               autoComplete="current-password"
-              className="input-brutal mt-1 w-full"
             />
-          </label>
+          </AdminField>
+
           {error ? (
-            <p className="font-sans text-sm text-red-600" role="alert">
+            <p className="admin-error" role="alert">
               {error}
             </p>
           ) : null}
-          <BrutalButton type="submit" className="w-full" disabled={loading}>
-            {loading ? 'PŘIHLÁŠUJI…' : 'PŘIHLÁSIT →'}
-          </BrutalButton>
+
+          <AdminButton type="submit" className="w-full" disabled={loading}>
+            {loading ? 'Přihlašuji…' : 'Přihlásit se'}
+          </AdminButton>
         </form>
       </div>
-    </section>
+    </div>
   )
 }

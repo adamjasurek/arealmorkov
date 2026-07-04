@@ -1,6 +1,7 @@
 import { useQuery } from '@tanstack/react-query'
 import { Navigate } from 'react-router-dom'
 import { clearAdminSession, getAdminToken, verifyToken } from '@/api/adminApi'
+import { AdminLoading } from '@/components/admin/ui'
 
 type Props = {
   children: React.ReactNode
@@ -25,11 +26,7 @@ export function AdminGuard({ children }: Props) {
   }
 
   if (query.isLoading) {
-    return (
-      <div className="flex min-h-screen items-center justify-center font-sans text-muted">
-        Ověřuji přihlášení…
-      </div>
-    )
+    return <AdminLoading message="Ověřuji přihlášení…" />
   }
 
   if (query.isError) {

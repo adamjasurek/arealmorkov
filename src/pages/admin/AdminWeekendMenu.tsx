@@ -1,32 +1,32 @@
 import { AdminSaveBar } from '@/components/admin/AdminSaveBar'
+import { AdminButton, AdminCard, AdminField, AdminInput, AdminLoading, AdminPageHeader } from '@/components/admin/ui'
 import { useAdminWeekendMenu } from '@/hooks/admin/useAdminEditors'
 
 export function AdminWeekendMenu() {
   const { menuQuery, data, setLocal, saveMutation } = useAdminWeekendMenu()
 
   if (menuQuery.isLoading) {
-    return <p className="font-sans text-muted">Načítám…</p>
+    return <AdminLoading />
   }
 
   return (
     <div>
-      <h1 className="font-display text-4xl text-gold-gradient">Víkendové menu</h1>
-      <p className="mt-2 font-sans text-muted">Speciality platné o víkendu.</p>
+      <AdminPageHeader title="Víkendové menu" description="Speciality platné o víkendu." />
 
-      <div className="card-brutal mt-8 space-y-4 p-6">
-        <label className="block">
-          <span className="font-display text-sm uppercase">Poznámka</span>
-          <input
-            className="input-brutal mt-1 w-full"
+      <AdminCard className="space-y-4 p-6">
+        <AdminField label="Poznámka">
+          <AdminInput
             value={data.note ?? ''}
             onChange={(e) => setLocal((prev) => ({ ...prev, note: e.target.value }))}
           />
-        </label>
+        </AdminField>
 
         {data.items.map((item, index) => (
-          <div key={`${item.name}-${index}`} className="grid gap-2 border-t border-foreground/15 pt-4 md:grid-cols-3">
-            <input
-              className="input-brutal"
+          <div
+            key={`${item.name}-${index}`}
+            className="grid gap-2 border-t border-[var(--admin-border)] pt-4 md:grid-cols-3"
+          >
+            <AdminInput
               value={item.name}
               placeholder="Název"
               onChange={(e) =>
@@ -38,8 +38,7 @@ export function AdminWeekendMenu() {
                 }))
               }
             />
-            <input
-              className="input-brutal"
+            <AdminInput
               value={item.description ?? ''}
               placeholder="Popis"
               onChange={(e) =>
@@ -51,8 +50,7 @@ export function AdminWeekendMenu() {
                 }))
               }
             />
-            <input
-              className="input-brutal"
+            <AdminInput
               value={item.price}
               placeholder="Cena"
               onChange={(e) =>
@@ -67,9 +65,8 @@ export function AdminWeekendMenu() {
           </div>
         ))}
 
-        <button
-          type="button"
-          className="font-sans text-sm text-gold-500 underline"
+        <AdminButton
+          variant="secondary"
           onClick={() =>
             setLocal((prev) => ({
               ...prev,
@@ -78,8 +75,8 @@ export function AdminWeekendMenu() {
           }
         >
           + Přidat položku
-        </button>
-      </div>
+        </AdminButton>
+      </AdminCard>
 
       <AdminSaveBar
         onSave={() => saveMutation.mutate(data)}

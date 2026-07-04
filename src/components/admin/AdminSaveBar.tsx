@@ -1,5 +1,5 @@
 import type { ReactNode } from 'react'
-import { BrutalButton } from '@/components/ui/BrutalButton'
+import { AdminButton } from '@/components/admin/ui'
 
 type Props = {
   onSave: () => void
@@ -9,11 +9,11 @@ type Props = {
 
 export function AdminSaveBar({ onSave, saving, children }: Props) {
   return (
-    <div className="sticky bottom-4 z-20 mt-8 space-y-3">
+    <div className="admin-save-bar space-y-3">
       {children}
-      <BrutalButton type="button" className="w-full" disabled={saving} onClick={onSave}>
-        {saving ? 'UKLÁDÁM…' : 'ULOŽIT →'}
-      </BrutalButton>
+      <AdminButton type="button" className="w-full" disabled={saving} onClick={onSave}>
+        {saving ? 'Ukládám…' : 'Uložit změny'}
+      </AdminButton>
     </div>
   )
 }

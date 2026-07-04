@@ -1,7 +1,7 @@
 import { useRef, useState } from 'react'
 import { fileToBase64, uploadGalleryImage } from '@/api/adminApi'
 import { adminToast } from '@/lib/adminToast'
-import { BrutalButton } from '@/components/ui/BrutalButton'
+import { AdminButton, AdminCard, AdminPageHeader } from '@/components/admin/ui'
 import {
   galleryFallback,
   galleryImagePath,
@@ -47,12 +47,10 @@ function GallerySlotCard({ folder, slot }: { folder: GalleryFolder; slot: number
   }
 
   return (
-    <div className="card-brutal space-y-3 p-4">
-      <div className="flex items-center justify-between gap-2">
-        <p className="font-display text-lg">Fotka {slot}</p>
-      </div>
+    <AdminCard className="space-y-3 p-4">
+      <p className="text-sm font-semibold text-[var(--admin-text)]">Fotka {slot}</p>
 
-      <div className="overflow-hidden border-2 border-foreground/20">
+      <div className="overflow-hidden border border-[var(--admin-border)]">
         <img
           src={previewSrc}
           alt={`${folder} ${slot}`}
@@ -74,22 +72,21 @@ function GallerySlotCard({ folder, slot }: { folder: GalleryFolder; slot: number
         }}
       />
 
-      <BrutalButton
-        type="button"
-        variant="outline"
+      <AdminButton
+        variant="secondary"
         className="w-full"
         disabled={uploading}
         onClick={() => inputRef.current?.click()}
       >
-        {uploading ? 'NAHRÁVÁM…' : 'VYBRAT A NAHRÁT →'}
-      </BrutalButton>
+        {uploading ? 'Nahrávám…' : 'Vybrat a nahrát'}
+      </AdminButton>
 
       {error ? (
-        <p className="font-sans text-xs text-red-600" role="alert">
+        <p className="admin-error text-xs" role="alert">
           {error}
         </p>
       ) : null}
-    </div>
+    </AdminCard>
   )
 }
 
@@ -99,30 +96,25 @@ export function AdminGallery() {
 
   return (
     <div>
-      <h1 className="font-display text-4xl text-gold-gradient">Fotogalerie</h1>
-      <p className="mt-2 font-sans text-muted">
-        Nahrajte novou fotku — automaticky se zmenší a uloží jako WebP. Každá pozice odpovídá
-        jedné fotce na webu.
-      </p>
+      <AdminPageHeader
+        title="Fotogalerie"
+        description="Nahrajte novou fotku — automaticky se zmenší a uloží jako WebP. Každá pozice odpovídá jedné fotce na webu."
+      />
 
-      <div className="mt-6 flex flex-wrap gap-2">
+      <div className="flex flex-wrap gap-2">
         {folders.map((folder) => (
           <button
             key={folder.id}
             type="button"
             onClick={() => setActiveFolder(folder.id)}
-            className={`rounded-sm border-2 border-foreground px-4 py-2 font-display text-sm ${
-              activeFolder === folder.id
-                ? 'bg-gold-500 text-[#2b2a29]'
-                : 'bg-surface text-foreground hover:bg-gold-500/10'
-            }`}
+            className={`admin-tab ${activeFolder === folder.id ? 'active' : ''}`}
           >
             {folder.label}
           </button>
         ))}
       </div>
 
-      <div className="mt-8 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+      <div className="mt-6 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
         {slots.map((slot) => (
           <GallerySlotCard key={`${activeFolder}-${slot}`} folder={activeFolder} slot={slot} />
         ))}

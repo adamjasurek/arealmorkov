@@ -1,26 +1,27 @@
 import { AdminSaveBar } from '@/components/admin/AdminSaveBar'
+import { AdminLoading, AdminPageHeader } from '@/components/admin/ui'
 import { useAdminLunchMenu } from '@/hooks/admin/useAdminEditors'
 
 export function AdminLunchMenu() {
   const { menuQuery, data, setLocal, saveMutation } = useAdminLunchMenu()
 
   if (menuQuery.isLoading) {
-    return <p className="font-sans text-muted">Načítám…</p>
+    return <AdminLoading />
   }
 
   return (
     <div>
-      <h1 className="font-display text-4xl text-gold-gradient">Polední menu</h1>
-      <p className="mt-2 font-sans text-muted">
-        Vyplňte polévku a tři hlavní chody pro každý den. Zaškrtněte „Zavřeno“, pokud se nevaří.
-      </p>
+      <AdminPageHeader
+        title="Polední menu"
+        description="Vyplňte polévku a tři hlavní chody pro každý den. Zaškrtněte „Zavřeno“, pokud se nevaří."
+      />
 
-      <div className="mt-8 space-y-6">
+      <div className="space-y-6">
         {data.days.map((day, dayIndex) => (
-          <div key={day.id} className="card-brutal space-y-4 p-5">
+          <div key={day.id} className="admin-card space-y-4 p-5">
             <div className="flex flex-wrap items-center justify-between gap-3">
-              <h2 className="font-display text-2xl capitalize">{day.label}</h2>
-              <label className="flex items-center gap-2 font-sans text-sm">
+              <h2 className="admin-h2 capitalize">{day.label}</h2>
+              <label className="flex items-center gap-2 text-sm text-[var(--admin-muted)]">
                 <input
                   type="checkbox"
                   checked={day.closed === true}
@@ -38,9 +39,9 @@ export function AdminLunchMenu() {
             </div>
 
             <div className="space-y-2">
-              <p className="font-display text-sm uppercase">Polévka</p>
+              <p className="admin-label">Polévka</p>
               <input
-                className="input-brutal w-full"
+                className="admin-input w-full"
                 value={day.soup.name}
                 disabled={day.closed}
                 placeholder="Název polévky"
@@ -56,7 +57,7 @@ export function AdminLunchMenu() {
                 }
               />
               <input
-                className="input-brutal w-full"
+                className="admin-input w-full"
                 value={day.soup.description ?? ''}
                 disabled={day.closed}
                 placeholder="Popis (volitelné)"
@@ -74,10 +75,10 @@ export function AdminLunchMenu() {
             </div>
 
             {day.rotatingMains.map((main, mainIndex) => (
-              <div key={main.id} className="space-y-2 border-t border-foreground/15 pt-4">
-                <p className="font-display text-sm uppercase">Hlavní chod {mainIndex + 1}</p>
+              <div key={main.id} className="space-y-2 border-t border-[var(--admin-border)] pt-4">
+                <p className="admin-label">Hlavní chod {mainIndex + 1}</p>
                 <input
-                  className="input-brutal w-full"
+                  className="admin-input w-full"
                   value={main.name}
                   disabled={day.closed}
                   placeholder="Název jídla"
@@ -98,7 +99,7 @@ export function AdminLunchMenu() {
                   }
                 />
                 <input
-                  className="input-brutal w-full"
+                  className="admin-input w-full"
                   value={main.description ?? ''}
                   disabled={day.closed}
                   placeholder="Popis (volitelné)"
