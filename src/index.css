@@ -41,6 +41,14 @@
     overflow-x: hidden;
   }
 
+  html:has(.home-fullscreen) {
+    overflow-y: hidden;
+  }
+
+  body:has(.home-fullscreen) {
+    overflow-y: hidden;
+  }
+
   body {
     @apply m-0 min-h-svh w-full max-w-full bg-surface font-sans text-foreground antialiased;
     overflow-x: hidden;

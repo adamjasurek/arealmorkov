@@ -7,8 +7,6 @@ import { PhotoBackground } from '@/components/ui/PhotoBackground'
 
 gsap.registerPlugin(useGSAP)
 
-const stepClass = ['', 'md:translate-y-4', 'md:translate-y-8'] as const
-
 export function HeroColumns() {
   const containerRef = useRef<HTMLElement>(null)
 
@@ -31,15 +29,15 @@ export function HeroColumns() {
   return (
     <section
       ref={containerRef}
-      className="relative isolate flex h-full w-full max-w-full items-start overflow-x-hidden bg-gold-gradient"
+      className="relative isolate flex h-full min-h-0 w-full max-w-full flex-1 overflow-hidden bg-gold-gradient"
       aria-label="Hlavní nabídka areálu"
     >
-      <div className="relative z-10 mx-auto grid h-full w-full max-w-[1800px] min-w-0 -translate-y-4 gap-7 px-6 py-6 md:grid-cols-3 md:grid-rows-[1fr] md:items-stretch md:gap-10 md:px-10 md:py-10 md:-translate-y-6 lg:gap-12 lg:px-14 lg:py-12 lg:-translate-y-8">
+      <div className="relative z-10 mx-auto grid h-full min-h-0 w-full max-w-[1800px] min-w-0 grid-rows-3 gap-3 px-3 py-3 sm:gap-4 sm:px-4 sm:py-4 md:grid-cols-3 md:grid-rows-[minmax(0,1fr)] md:items-stretch md:gap-6 md:px-8 md:py-5 lg:gap-8 lg:px-12 lg:py-6">
         {heroColumns.map((col, index) => {
           const card = (
             <Link
               to={col.href}
-              className="hero-pillar card-brutal-photo group relative isolate flex h-full min-h-[560px] flex-col overflow-hidden focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-gold-500 md:min-h-0"
+              className="hero-pillar card-brutal-photo group relative isolate flex h-full min-h-0 flex-col overflow-hidden focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-gold-500"
             >
               <PhotoBackground
                 src={col.image}
@@ -47,9 +45,9 @@ export function HeroColumns() {
                 loading={index === 0 ? 'eager' : 'lazy'}
                 fetchPriority={index === 0 ? 'high' : undefined}
               />
-              <div className="relative z-10 flex flex-1 flex-col p-7 md:p-9 lg:p-10">
+              <div className="relative z-10 flex min-h-0 flex-1 flex-col p-4 sm:p-5 md:p-6 lg:p-8">
                 <figure
-                  className="hero-polaroid mb-7 w-[62%] max-w-[280px] border-4 border-foreground bg-[#fefefe] p-2 pb-10 shadow-brutal md:max-w-[320px]"
+                  className="hero-polaroid mb-3 w-[42%] max-w-[140px] shrink-0 border-4 border-foreground bg-[#fefefe] p-1.5 pb-6 shadow-brutal sm:mb-4 sm:max-w-[160px] sm:pb-7 md:mb-5 md:w-[52%] md:max-w-[200px] md:p-2 md:pb-8 lg:max-w-[240px] xl:max-w-[280px]"
                   style={{ transform: `rotate(${col.rotate}deg)` }}
                 >
                   <img
@@ -62,15 +60,15 @@ export function HeroColumns() {
                   />
                 </figure>
 
-                <h2 className="font-display text-6xl text-gold-gradient md:text-[3.75rem] lg:text-[4.1rem]">
+                <h2 className="font-display shrink-0 text-[clamp(1.75rem,4.2vw,4.1rem)] leading-none text-gold-gradient">
                   {col.title}
                 </h2>
 
-                <p className="mt-4 flex-1 font-sans text-lg leading-relaxed text-muted md:text-xl">
+                <p className="mt-2 min-h-0 flex-1 overflow-hidden font-sans text-sm leading-snug text-muted sm:text-base md:mt-3 md:text-lg lg:text-xl">
                   {col.description}
                 </p>
 
-                <span className="btn-brutal mt-9 w-full text-center md:w-auto">
+                <span className="btn-brutal mt-auto shrink-0 px-3 py-2 text-sm md:px-4 md:py-2.5 md:text-base lg:px-6 lg:py-3 lg:text-lg">
                   {col.cta} →
                 </span>
               </div>
@@ -81,8 +79,7 @@ export function HeroColumns() {
             return (
               <div
                 key={col.id}
-                className={`h-full min-w-0 ${stepClass[index]}`}
-                style={{ transform: 'translate(-10px, 10px) rotate(-3deg)' }}
+                className="h-full min-h-0 min-w-0 md:-rotate-[2deg]"
               >
                 {card}
               </div>
@@ -93,8 +90,7 @@ export function HeroColumns() {
             return (
               <div
                 key={col.id}
-                className={`h-full min-w-0 ${stepClass[index]}`}
-                style={{ transform: 'translate(10px, 10px) rotate(3deg)' }}
+                className="h-full min-h-0 min-w-0 md:rotate-[2deg]"
               >
                 {card}
               </div>
@@ -102,7 +98,7 @@ export function HeroColumns() {
           }
 
           return (
-            <div key={col.id} className={`h-full min-w-0 ${stepClass[index]}`}>
+            <div key={col.id} className="h-full min-h-0 min-w-0">
               {card}
             </div>
           )
