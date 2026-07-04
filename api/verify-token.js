@@ -1,7 +1,8 @@
 import { verifyAdminToken } from '../server/auth-helper.js'
 import { jsonResponse } from '../server/json-response.js'
+import { defineRoute } from '../server/vercel-fetch.js'
 
-export default async function handler(request) {
+export default defineRoute(async function verifyTokenHandler(request) {
   if (request.method === 'OPTIONS') {
     return jsonResponse(request, 204, {})
   }
@@ -16,4 +17,4 @@ export default async function handler(request) {
   }
 
   return jsonResponse(request, 200, { ok: true })
-}
+})

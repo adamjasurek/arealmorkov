@@ -27,7 +27,18 @@ export async function loginUser(password: string): Promise<void> {
     body: JSON.stringify({ password }),
   })
 
-  const data = (await response.json()) as { adminToken?: string; error?: string }
+  const raw = await response.text()
+  let data: { adminToken?: string; error?: string }
+  try {
+    data = JSON.parse(raw) as { adminToken?: string; error?: string }
+  } catch {
+    throw new Error(
+      response.status >= 500
+        ? 'Chyba API na serveru — zkontrolujte env proměnné na Vercelu (ADMIN_PASSWORD, ADMIN_SESSION_SECRET).'
+        : 'Neočekávaná odpověď serveru.',
+    )
+  }
+
   if (!response.ok) {
     throw new Error(data.error ?? 'Přihlášení se nezdařilo.')
   }

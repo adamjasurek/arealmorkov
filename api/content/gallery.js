@@ -2,11 +2,12 @@ import { verifyAdminToken } from '../../server/auth-helper.js'
 import { writeRepoBinary } from '../../server/github-files.js'
 import { convertBufferToWebp } from '../../server/convert-to-webp.js'
 import { jsonResponse } from '../../server/json-response.js'
+import { defineRoute } from '../../server/vercel-fetch.js'
 
 const FOLDERS = new Set(['pool', 'camp', 'restaurant'])
 const MAX_BYTES = 12 * 1024 * 1024
 
-export default async function handler(request) {
+export default defineRoute(async function galleryUploadHandler(request) {
   if (request.method === 'OPTIONS') {
     return jsonResponse(request, 204, {})
   }
@@ -60,4 +61,4 @@ export default async function handler(request) {
     const message = error instanceof Error ? error.message : 'Nahrání selhalo.'
     return jsonResponse(request, 500, { error: message })
   }
-}
+})

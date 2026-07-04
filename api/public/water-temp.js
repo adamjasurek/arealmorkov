@@ -1,7 +1,8 @@
 import { readRepoJson } from '../../server/github-files.js'
 import { jsonResponse } from '../../server/json-response.js'
+import { defineRoute } from '../../server/vercel-fetch.js'
 
-export default async function handler(request) {
+export default defineRoute(async function publicWaterTempHandler(request) {
   if (request.method === 'OPTIONS') {
     return jsonResponse(request, 204, {})
   }
@@ -19,4 +20,4 @@ export default async function handler(request) {
     const message = error instanceof Error ? error.message : 'Chyba serveru'
     return jsonResponse(request, 500, { error: message })
   }
-}
+})

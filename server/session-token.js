@@ -1,5 +1,5 @@
 import crypto from 'node:crypto'
-import { timingSafeEqualString } from './auth-helper.js'
+import { timingSafeEqualString } from './crypto-utils.js'
 
 const TOKEN_TTL_MS = 8 * 60 * 60 * 1000
 

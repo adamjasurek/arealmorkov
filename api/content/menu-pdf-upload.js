@@ -1,6 +1,7 @@
 import { verifyAdminToken } from '../../server/auth-helper.js'
 import { writeRepoBinary, readRepoJson, writeRepoJson } from '../../server/github-files.js'
 import { jsonResponse } from '../../server/json-response.js'
+import { defineRoute } from '../../server/vercel-fetch.js'
 
 const TYPES = new Set(['stala', 'poledni', 'vikend', 'napoje'])
 const MAX_BYTES = 15 * 1024 * 1024
@@ -12,7 +13,7 @@ const FILE_NAMES = {
   napoje: 'napojovy-listek.pdf',
 }
 
-export default async function handler(request) {
+export default defineRoute(async function menuPdfUploadHandler(request) {
   if (request.method === 'OPTIONS') {
     return jsonResponse(request, 204, {})
   }
@@ -81,4 +82,4 @@ export default async function handler(request) {
     const message = error instanceof Error ? error.message : 'Nahrání PDF selhalo.'
     return jsonResponse(request, 500, { error: message })
   }
-}
+})
