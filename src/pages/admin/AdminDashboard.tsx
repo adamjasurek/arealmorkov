@@ -3,15 +3,15 @@ import { usePublicFoodMenu, usePublicWaterTemp } from '@/hooks/usePublicContent'
 import { AdminPageHeader } from '@/components/admin/ui'
 
 const sections = [
-  { to: '/admin/teplota', label: 'Teplota vody', hint: 'Bazén a brouzdaliště' },
-  { to: '/admin/stala-nabidka', label: 'Stálá nabídka', hint: 'Pizza a přílohy' },
-  { to: '/admin/poledni-menu', label: 'Polední menu', hint: 'Denní polévka a chody' },
-  { to: '/admin/vikendove-menu', label: 'Víkendové menu', hint: 'Víkendové speciality' },
-  { to: '/admin/napojovy-listek', label: 'Nápojový lístek', hint: 'Pivo, víno, nealko' },
-  { to: '/admin/obsah', label: 'Doby a ceníky', hint: 'Koupaliště, restaurace, kemp' },
-  { to: '/admin/fotky', label: 'Fotogalerie', hint: '8 fotek × 3 sekce' },
-  { to: '/admin/menu-pdf', label: 'PDF menu', hint: 'Ke stažení vedle jídelníčku' },
-]
+  { to: '/admin/teplota', label: 'Teplota vody', hint: 'Bazén a brouzdaliště', icon: '🌡️', tone: 'pool' },
+  { to: '/admin/stala-nabidka', label: 'Stálá nabídka', hint: 'Pizza a přílohy', icon: '🍕', tone: 'food' },
+  { to: '/admin/poledni-menu', label: 'Polední menu', hint: 'Denní polévka a chody', icon: '🍽️', tone: 'food' },
+  { to: '/admin/vikendove-menu', label: 'Víkendové menu', hint: 'Víkendové speciality', icon: '⭐', tone: 'food' },
+  { to: '/admin/napojovy-listek', label: 'Nápojový lístek', hint: 'Pivo, víno, nealko', icon: '🍺', tone: 'food' },
+  { to: '/admin/obsah', label: 'Doby a ceníky', hint: 'Koupaliště, restaurace, kemp', icon: '📋', tone: 'site' },
+  { to: '/admin/fotky', label: 'Fotogalerie', hint: '8 fotek × 3 sekce', icon: '📷', tone: 'media' },
+  { to: '/admin/menu-pdf', label: 'PDF menu', hint: 'Ke stažení vedle jídelníčku', icon: '📄', tone: 'media' },
+] as const
 
 export function AdminDashboard() {
   const water = usePublicWaterTemp()
@@ -31,6 +31,7 @@ export function AdminDashboard() {
             to={section.to}
             className="admin-card admin-dashboard-card p-4"
           >
+            <span className={`admin-dashboard-icon tone-${section.tone}`}>{section.icon}</span>
             <p className="font-semibold text-[var(--admin-text)]">{section.label}</p>
             <p className="mt-1 text-sm text-[var(--admin-muted)]">{section.hint}</p>
           </Link>

@@ -24,13 +24,13 @@ createRoot(document.getElementById('root')!).render(
         toastOptions={{
           className: 'text-sm',
           style: {
-            background: '#fff',
-            color: '#111827',
-            border: '1px solid #e5e7eb',
-            boxShadow: '0 4px 12px rgb(0 0 0 / 10%)',
-            borderRadius: '8px',
+            background: '#fffcf7',
+            color: '#2b2a29',
+            border: '1px solid #e8e0d4',
+            boxShadow: '0 4px 16px rgb(43 42 41 / 10%)',
+            borderRadius: '10px',
           },
-          success: { iconTheme: { primary: '#2563eb', secondary: '#fff' } },
+          success: { iconTheme: { primary: '#c0843d', secondary: '#fff' } },
         }}
       />
     </QueryClientProvider>

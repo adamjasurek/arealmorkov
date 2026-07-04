@@ -20,7 +20,8 @@ export function AdminInput({ className = '', ...props }: InputHTMLAttributes<HTM
 
 export function AdminPageHeader({ title, description }: { title: string; description?: string }) {
   return (
-    <header className="mb-6 border-b border-[var(--admin-border)] pb-5">
+    <header className="admin-page-header">
+      <div className="admin-page-header-accent" />
       <h1 className="admin-h1">{title}</h1>
       {description ? <p className="admin-desc">{description}</p> : null}
     </header>

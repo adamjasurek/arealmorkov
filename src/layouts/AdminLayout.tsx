@@ -41,16 +41,16 @@ export function AdminLayout() {
   return (
     <div className="admin-shell min-h-screen">
       <div className="mx-auto flex min-h-screen max-w-7xl flex-col md:flex-row">
-        <aside className="admin-sidebar flex w-full shrink-0 flex-col border-b md:min-h-screen md:w-60 md:border-b-0 md:border-r">
-          <div className="border-b border-[var(--admin-border)] px-5 py-5">
-            <p className="text-base font-bold text-[var(--admin-text)]">Areál Mořkov</p>
-            <p className="mt-0.5 text-xs text-[var(--admin-muted)]">Správa webu</p>
+        <aside className="admin-sidebar flex w-full shrink-0 flex-col md:min-h-screen md:w-64">
+          <div className="admin-sidebar-header">
+            <p className="admin-sidebar-title">Areál Mořkov</p>
+            <p className="admin-sidebar-subtitle">Správa webu</p>
           </div>
 
           <nav className="flex-1 overflow-y-auto px-3 py-4">
             {navGroups.map((group) => (
               <div key={group.label} className="mb-1">
-                <p className="admin-nav-group px-3">{group.label}</p>
+                <p className="admin-nav-group">{group.label}</p>
                 <div className="mt-1 space-y-0.5">
                   {group.links.map((link) => (
                     <NavLink
@@ -66,12 +66,12 @@ export function AdminLayout() {
             ))}
           </nav>
 
-          <div className="space-y-2 border-t border-[var(--admin-border)] p-4">
+          <div className="admin-sidebar-footer space-y-2">
             <a
               href="/"
               target="_blank"
               rel="noopener noreferrer"
-              className="admin-nav-link text-center text-sm"
+              className="admin-nav-link text-sm"
             >
               Zobrazit web ↗
             </a>
@@ -81,7 +81,7 @@ export function AdminLayout() {
           </div>
         </aside>
 
-        <main className="min-w-0 flex-1 p-5 md:p-8">
+        <main className="admin-main-area">
           <Outlet />
         </main>
       </div>

@@ -29,8 +29,9 @@ export function AdminLogin() {
   return (
     <div className="admin-shell admin-login-wrap">
       <div className="admin-card admin-login-card">
-        <h1 className="admin-h1">Přihlášení</h1>
-        <p className="admin-desc">Správa obsahu webu Areál Mořkov</p>
+        <p className="admin-login-brand">Areál Mořkov</p>
+        <h1 className="admin-h1 mt-3">Přihlášení</h1>
+        <p className="admin-desc">Správa obsahu webu</p>
 
         <form onSubmit={(e) => { void handleSubmit(e) }} className="mt-6 space-y-4">
           <AdminField label="Heslo">
