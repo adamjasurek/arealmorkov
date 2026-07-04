@@ -1,5 +1,5 @@
 import { AdminSaveBar } from '@/components/admin/AdminSaveBar'
-import { AdminCard, AdminInput, AdminLoading, AdminPageHeader } from '@/components/admin/ui'
+import { AdminCard, AdminField, AdminInput, AdminLoading, AdminPageHeader } from '@/components/admin/ui'
 import { useAdminFoodMenu } from '@/hooks/admin/useAdminEditors'
 import type { PizzaItem } from '@/types/content'
 
@@ -16,46 +16,55 @@ function PizzaEditor({
     <AdminCard className="space-y-4 p-5">
       <h2 className="admin-h2">{title}</h2>
       {items.map((pizza, index) => (
-        <div key={pizza.num} className="space-y-2 border-b border-[var(--admin-border)] pb-4 last:border-0">
-          <div className="grid gap-2 md:grid-cols-2">
-            <AdminInput
-              value={pizza.name}
-              placeholder="Název"
-              onChange={(e) => {
-                const next = [...items]
-                next[index] = { ...pizza, name: e.target.value }
-                onChange(next)
-              }}
-            />
-            <AdminInput
-              value={pizza.ingredients}
-              placeholder="Ingredience"
-              onChange={(e) => {
-                const next = [...items]
-                next[index] = { ...pizza, ingredients: e.target.value }
-                onChange(next)
-              }}
-            />
+        <div key={pizza.num} className="space-y-3 border-b border-[var(--admin-border)] pb-4 last:border-0">
+          <p className="text-sm font-semibold text-[var(--admin-text)]">Pizza č. {pizza.num}</p>
+          <div className="grid gap-3 md:grid-cols-2">
+            <AdminField label="Název">
+              <AdminInput
+                value={pizza.name}
+                placeholder="Název"
+                onChange={(e) => {
+                  const next = [...items]
+                  next[index] = { ...pizza, name: e.target.value }
+                  onChange(next)
+                }}
+              />
+            </AdminField>
+            <AdminField label="Ingredience">
+              <AdminInput
+                value={pizza.ingredients}
+                placeholder="Ingredience"
+                onChange={(e) => {
+                  const next = [...items]
+                  next[index] = { ...pizza, ingredients: e.target.value }
+                  onChange(next)
+                }}
+              />
+            </AdminField>
           </div>
-          <div className="grid gap-2 sm:grid-cols-2">
-            <AdminInput
-              value={pizza.price32}
-              placeholder="Cena 32 cm"
-              onChange={(e) => {
-                const next = [...items]
-                next[index] = { ...pizza, price32: e.target.value }
-                onChange(next)
-              }}
-            />
-            <AdminInput
-              value={pizza.price45}
-              placeholder="Cena 45 cm"
-              onChange={(e) => {
-                const next = [...items]
-                next[index] = { ...pizza, price45: e.target.value }
-                onChange(next)
-              }}
-            />
+          <div className="grid gap-3 sm:grid-cols-2">
+            <AdminField label="Cena 32 cm">
+              <AdminInput
+                value={pizza.price32}
+                placeholder="Cena 32 cm"
+                onChange={(e) => {
+                  const next = [...items]
+                  next[index] = { ...pizza, price32: e.target.value }
+                  onChange(next)
+                }}
+              />
+            </AdminField>
+            <AdminField label="Cena 45 cm">
+              <AdminInput
+                value={pizza.price45}
+                placeholder="Cena 45 cm"
+                onChange={(e) => {
+                  const next = [...items]
+                  next[index] = { ...pizza, price45: e.target.value }
+                  onChange(next)
+                }}
+              />
+            </AdminField>
           </div>
         </div>
       ))}

@@ -1,5 +1,5 @@
 import { AdminSaveBar } from '@/components/admin/AdminSaveBar'
-import { AdminLoading, AdminPageHeader } from '@/components/admin/ui'
+import { AdminCard, AdminField, AdminInput, AdminLoading, AdminPageHeader } from '@/components/admin/ui'
 import { useAdminLunchMenu } from '@/hooks/admin/useAdminEditors'
 
 export function AdminLunchMenu() {
@@ -18,7 +18,7 @@ export function AdminLunchMenu() {
 
       <div className="space-y-6">
         {data.days.map((day, dayIndex) => (
-          <div key={day.id} className="admin-card space-y-4 p-5">
+          <AdminCard key={day.id} className="space-y-4 p-5">
             <div className="flex flex-wrap items-center justify-between gap-3">
               <h2 className="admin-h2 capitalize">{day.label}</h2>
               <label className="flex items-center gap-2 text-sm text-[var(--admin-muted)]">
@@ -38,69 +38,28 @@ export function AdminLunchMenu() {
               </label>
             </div>
 
-            <div className="space-y-2">
-              <p className="admin-label">Polévka</p>
-              <input
-                className="admin-input w-full"
-                value={day.soup.name}
-                disabled={day.closed}
-                placeholder="Název polévky"
-                onChange={(e) =>
-                  setLocal((prev) => ({
-                    ...prev,
-                    days: prev.days.map((d, i) =>
-                      i === dayIndex
-                        ? { ...d, soup: { ...d.soup, name: e.target.value } }
-                        : d,
-                    ),
-                  }))
-                }
-              />
-              <input
-                className="admin-input w-full"
-                value={day.soup.description ?? ''}
-                disabled={day.closed}
-                placeholder="Popis (volitelné)"
-                onChange={(e) =>
-                  setLocal((prev) => ({
-                    ...prev,
-                    days: prev.days.map((d, i) =>
-                      i === dayIndex
-                        ? { ...d, soup: { ...d.soup, description: e.target.value } }
-                        : d,
-                    ),
-                  }))
-                }
-              />
-            </div>
-
-            {day.rotatingMains.map((main, mainIndex) => (
-              <div key={main.id} className="space-y-2 border-t border-[var(--admin-border)] pt-4">
-                <p className="admin-label">Hlavní chod {mainIndex + 1}</p>
-                <input
-                  className="admin-input w-full"
-                  value={main.name}
+            <div className="space-y-3">
+              <p className="admin-h2 text-base">Polévka</p>
+              <AdminField label="Název polévky">
+                <AdminInput
+                  value={day.soup.name}
                   disabled={day.closed}
-                  placeholder="Název jídla"
+                  placeholder="Název polévky"
                   onChange={(e) =>
                     setLocal((prev) => ({
                       ...prev,
                       days: prev.days.map((d, i) =>
                         i === dayIndex
-                          ? {
-                              ...d,
-                              rotatingMains: d.rotatingMains.map((m, mi) =>
-                                mi === mainIndex ? { ...m, name: e.target.value } : m,
-                              ),
-                            }
+                          ? { ...d, soup: { ...d.soup, name: e.target.value } }
                           : d,
                       ),
                     }))
                   }
                 />
-                <input
-                  className="admin-input w-full"
-                  value={main.description ?? ''}
+              </AdminField>
+              <AdminField label="Popis polévky">
+                <AdminInput
+                  value={day.soup.description ?? ''}
                   disabled={day.closed}
                   placeholder="Popis (volitelné)"
                   onChange={(e) =>
@@ -108,20 +67,65 @@ export function AdminLunchMenu() {
                       ...prev,
                       days: prev.days.map((d, i) =>
                         i === dayIndex
-                          ? {
-                              ...d,
-                              rotatingMains: d.rotatingMains.map((m, mi) =>
-                                mi === mainIndex ? { ...m, description: e.target.value } : m,
-                              ),
-                            }
+                          ? { ...d, soup: { ...d.soup, description: e.target.value } }
                           : d,
                       ),
                     }))
                   }
                 />
+              </AdminField>
+            </div>
+
+            {day.rotatingMains.map((main, mainIndex) => (
+              <div key={main.id} className="space-y-3 border-t border-[var(--admin-border)] pt-4">
+                <p className="admin-h2 text-base">Hlavní chod {mainIndex + 1}</p>
+                <AdminField label="Název jídla">
+                  <AdminInput
+                    value={main.name}
+                    disabled={day.closed}
+                    placeholder="Název jídla"
+                    onChange={(e) =>
+                      setLocal((prev) => ({
+                        ...prev,
+                        days: prev.days.map((d, i) =>
+                          i === dayIndex
+                            ? {
+                                ...d,
+                                rotatingMains: d.rotatingMains.map((m, mi) =>
+                                  mi === mainIndex ? { ...m, name: e.target.value } : m,
+                                ),
+                              }
+                            : d,
+                        ),
+                      }))
+                    }
+                  />
+                </AdminField>
+                <AdminField label="Popis jídla">
+                  <AdminInput
+                    value={main.description ?? ''}
+                    disabled={day.closed}
+                    placeholder="Popis (volitelné)"
+                    onChange={(e) =>
+                      setLocal((prev) => ({
+                        ...prev,
+                        days: prev.days.map((d, i) =>
+                          i === dayIndex
+                            ? {
+                                ...d,
+                                rotatingMains: d.rotatingMains.map((m, mi) =>
+                                  mi === mainIndex ? { ...m, description: e.target.value } : m,
+                                ),
+                              }
+                            : d,
+                        ),
+                      }))
+                    }
+                  />
+                </AdminField>
               </div>
             ))}
-          </div>
+          </AdminCard>
         ))}
       </div>
 

@@ -17,6 +17,7 @@ export function AdminWeekendMenu() {
         <AdminField label="Poznámka">
           <AdminInput
             value={data.note ?? ''}
+            placeholder="Např. platí o víkendu od 11:00"
             onChange={(e) => setLocal((prev) => ({ ...prev, note: e.target.value }))}
           />
         </AdminField>
@@ -24,44 +25,53 @@ export function AdminWeekendMenu() {
         {data.items.map((item, index) => (
           <div
             key={`${item.name}-${index}`}
-            className="grid gap-2 border-t border-[var(--admin-border)] pt-4 md:grid-cols-3"
+            className="space-y-3 border-t border-[var(--admin-border)] pt-4"
           >
-            <AdminInput
-              value={item.name}
-              placeholder="Název"
-              onChange={(e) =>
-                setLocal((prev) => ({
-                  ...prev,
-                  items: prev.items.map((row, i) =>
-                    i === index ? { ...row, name: e.target.value } : row,
-                  ),
-                }))
-              }
-            />
-            <AdminInput
-              value={item.description ?? ''}
-              placeholder="Popis"
-              onChange={(e) =>
-                setLocal((prev) => ({
-                  ...prev,
-                  items: prev.items.map((row, i) =>
-                    i === index ? { ...row, description: e.target.value } : row,
-                  ),
-                }))
-              }
-            />
-            <AdminInput
-              value={item.price}
-              placeholder="Cena"
-              onChange={(e) =>
-                setLocal((prev) => ({
-                  ...prev,
-                  items: prev.items.map((row, i) =>
-                    i === index ? { ...row, price: e.target.value } : row,
-                  ),
-                }))
-              }
-            />
+            <p className="text-sm font-semibold text-[var(--admin-muted)]">Položka {index + 1}</p>
+            <div className="grid gap-3 md:grid-cols-3">
+              <AdminField label="Název">
+                <AdminInput
+                  value={item.name}
+                  placeholder="Název"
+                  onChange={(e) =>
+                    setLocal((prev) => ({
+                      ...prev,
+                      items: prev.items.map((row, i) =>
+                        i === index ? { ...row, name: e.target.value } : row,
+                      ),
+                    }))
+                  }
+                />
+              </AdminField>
+              <AdminField label="Popis">
+                <AdminInput
+                  value={item.description ?? ''}
+                  placeholder="Popis"
+                  onChange={(e) =>
+                    setLocal((prev) => ({
+                      ...prev,
+                      items: prev.items.map((row, i) =>
+                        i === index ? { ...row, description: e.target.value } : row,
+                      ),
+                    }))
+                  }
+                />
+              </AdminField>
+              <AdminField label="Cena">
+                <AdminInput
+                  value={item.price}
+                  placeholder="Cena"
+                  onChange={(e) =>
+                    setLocal((prev) => ({
+                      ...prev,
+                      items: prev.items.map((row, i) =>
+                        i === index ? { ...row, price: e.target.value } : row,
+                      ),
+                    }))
+                  }
+                />
+              </AdminField>
+            </div>
           </div>
         ))}
 
