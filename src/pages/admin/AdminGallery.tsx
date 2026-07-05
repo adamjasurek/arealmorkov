@@ -82,7 +82,7 @@ function GallerySlotCard({ folder, slot }: { folder: GalleryFolder; slot: number
       </AdminButton>
 
       {error ? (
-        <p className="admin-error text-xs" role="alert">
+        <p className="admin-field-error text-xs" role="alert">
           {error}
         </p>
       ) : null}

@@ -14,8 +14,18 @@ export function AdminButton({ variant = 'primary', className = '', children, ...
   )
 }
 
-export function AdminInput({ className = '', ...props }: InputHTMLAttributes<HTMLInputElement>) {
-  return <input className={`admin-input ${className}`.trim()} {...props} />
+type AdminInputProps = InputHTMLAttributes<HTMLInputElement> & {
+  invalid?: boolean
+}
+
+export function AdminInput({ className = '', invalid = false, ...props }: AdminInputProps) {
+  return (
+    <input
+      className={`admin-input ${invalid ? 'admin-input-invalid' : ''} ${className}`.trim()}
+      aria-invalid={invalid || undefined}
+      {...props}
+    />
+  )
 }
 
 export function AdminPageHeader({ title, description }: { title: string; description?: string }) {
@@ -34,18 +44,39 @@ export function AdminCard({ children, className = '' }: { children: ReactNode; c
 
 export function AdminField({
   label,
+  htmlFor,
+  error,
   children,
   className = '',
 }: {
   label: string
+  htmlFor?: string
+  error?: string | null
   children: ReactNode
   className?: string
 }) {
+  const errorId = htmlFor ? `${htmlFor}-error` : undefined
+
   return (
-    <label className={`block ${className}`.trim()}>
-      <span className="admin-label">{label}</span>
-      {children}
-    </label>
+    <div className={`admin-field ${className}`.trim()}>
+      <label htmlFor={htmlFor} className="block">
+        <span className="admin-label">{label}</span>
+        {children}
+      </label>
+      {error ? (
+        <p id={errorId} className="admin-field-error" role="alert">
+          {error}
+        </p>
+      ) : null}
+    </div>
+  )
+}
+
+export function AdminFormError({ message }: { message: string }) {
+  return (
+    <p className="admin-form-error" role="alert">
+      {message}
+    </p>
   )
 }
 

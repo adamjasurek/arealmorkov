@@ -5,12 +5,12 @@ import { NoiseOverlay } from '@/components/ui/NoiseOverlay'
 
 export function RootLayout() {
   const { pathname } = useLocation()
-  const isHome = pathname === '/'
+  const isFullscreen = pathname === '/' || pathname === '/404'
 
   return (
     <div
       className={`grid w-full max-w-full overflow-x-hidden ${
-        isHome
+        isFullscreen
           ? 'home-fullscreen h-svh grid-rows-[auto_1fr] overflow-y-hidden'
           : 'min-h-svh grid-rows-[auto_1fr_auto]'
       }`}
@@ -20,7 +20,7 @@ export function RootLayout() {
       <main className="relative min-h-0 w-full max-w-full min-w-0 overflow-x-hidden">
         <Outlet />
       </main>
-      {!isHome && <Footer />}
+      {!isFullscreen && <Footer />}
     </div>
   )
 }

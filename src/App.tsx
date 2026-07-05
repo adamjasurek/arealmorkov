@@ -43,6 +43,9 @@ const RestauraceVikendoveMenuPage = lazy(() =>
 const KontaktPage = lazy(() =>
   import('@/pages/KontaktPage').then((m) => ({ default: m.KontaktPage })),
 )
+const NotFoundPage = lazy(() =>
+  import('@/pages/NotFoundPage').then((m) => ({ default: m.NotFoundPage })),
+)
 
 const AdminDashboard = lazy(() =>
   import('@/pages/admin/AdminDashboard').then((m) => ({ default: m.AdminDashboard })),
@@ -246,6 +249,15 @@ export default function App() {
             }
           />
           <Route path="admin" element={<Navigate to="/admin/dashboard" replace />} />
+          <Route
+            path="404"
+            element={
+              <LazyPage>
+                <NotFoundPage />
+              </LazyPage>
+            }
+          />
+          <Route path="*" element={<Navigate to="/404" replace />} />
         </Route>
       </Routes>
     </BrowserRouter>
