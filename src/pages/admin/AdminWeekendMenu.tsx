@@ -1,5 +1,5 @@
 import { AdminSaveBar } from '@/components/admin/AdminSaveBar'
-import { AdminButton, AdminCard, AdminField, AdminInput, AdminLoading, AdminPageHeader } from '@/components/admin/ui'
+import { AdminButton, AdminCard, AdminField, AdminInput, AdminLoading, AdminPageHeader, AdminRemoveButton } from '@/components/admin/ui'
 import { useAdminWeekendMenu } from '@/hooks/admin/useAdminEditors'
 
 export function AdminWeekendMenu() {
@@ -27,7 +27,18 @@ export function AdminWeekendMenu() {
             key={`${item.name}-${index}`}
             className="space-y-3 border-t border-[var(--admin-border)] pt-4"
           >
-            <p className="text-sm font-semibold text-[var(--admin-muted)]">Položka {index + 1}</p>
+            <div className="flex items-center justify-between">
+              <p className="text-sm font-semibold text-[var(--admin-muted)]">Položka {index + 1}</p>
+              <AdminRemoveButton
+                confirmLabel={item.name.trim() ? `„${item.name.trim()}"` : `položku ${index + 1}`}
+                onRemove={() =>
+                  setLocal((prev) => ({
+                    ...prev,
+                    items: prev.items.filter((_, i) => i !== index),
+                  }))
+                }
+              />
+            </div>
             <div className="grid gap-3 md:grid-cols-3">
               <AdminField label="Název">
                 <AdminInput

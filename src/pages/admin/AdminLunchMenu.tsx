@@ -1,6 +1,18 @@
 import { AdminSaveBar } from '@/components/admin/AdminSaveBar'
-import { AdminCard, AdminField, AdminInput, AdminLoading, AdminPageHeader } from '@/components/admin/ui'
+import {
+  AdminButton,
+  AdminCard,
+  AdminField,
+  AdminInput,
+  AdminLoading,
+  AdminPageHeader,
+  AdminRemoveButton,
+} from '@/components/admin/ui'
 import { useAdminLunchMenu } from '@/hooks/admin/useAdminEditors'
+
+function newMainId() {
+  return `main-${Date.now()}-${Math.floor(Math.random() * 1000)}`
+}
 
 export function AdminLunchMenu() {
   const { menuQuery, data, setLocal, saveMutation } = useAdminLunchMenu()
@@ -78,7 +90,22 @@ export function AdminLunchMenu() {
 
             {day.rotatingMains.map((main, mainIndex) => (
               <div key={main.id} className="space-y-3 border-t border-[var(--admin-border)] pt-4">
-                <p className="admin-h2 text-base">Hlavní chod {mainIndex + 1}</p>
+                <div className="flex items-center justify-between">
+                  <p className="admin-h2 text-base">Hlavní chod {mainIndex + 1}</p>
+                  <AdminRemoveButton
+                    confirmLabel={main.name.trim() ? `„${main.name.trim()}"` : `hlavní chod ${mainIndex + 1}`}
+                    onRemove={() =>
+                      setLocal((prev) => ({
+                        ...prev,
+                        days: prev.days.map((d, i) =>
+                          i === dayIndex
+                            ? { ...d, rotatingMains: d.rotatingMains.filter((_, mi) => mi !== mainIndex) }
+                            : d,
+                        ),
+                      }))
+                    }
+                  />
+                </div>
                 <AdminField label="Název jídla">
                   <AdminInput
                     value={main.name}
@@ -125,6 +152,29 @@ export function AdminLunchMenu() {
                 </AdminField>
               </div>
             ))}
+
+            <AdminButton
+              variant="secondary"
+              disabled={day.closed}
+              onClick={() =>
+                setLocal((prev) => ({
+                  ...prev,
+                  days: prev.days.map((d, i) =>
+                    i === dayIndex
+                      ? {
+                          ...d,
+                          rotatingMains: [
+                            ...d.rotatingMains,
+                            { id: newMainId(), name: '', description: '' },
+                          ],
+                        }
+                      : d,
+                  ),
+                }))
+              }
+            >
+              + Přidat hlavní chod
+            </AdminButton>
           </AdminCard>
         ))}
       </div>

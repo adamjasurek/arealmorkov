@@ -1,5 +1,5 @@
 import { AdminSaveBar } from '@/components/admin/AdminSaveBar'
-import { AdminButton, AdminCard, AdminField, AdminInput, AdminLoading, AdminPageHeader } from '@/components/admin/ui'
+import { AdminButton, AdminCard, AdminField, AdminInput, AdminLoading, AdminPageHeader, AdminRemoveButton } from '@/components/admin/ui'
 import { useAdminFoodMenu } from '@/hooks/admin/useAdminEditors'
 import type { PizzaItem } from '@/types/content'
 
@@ -40,17 +40,10 @@ function PizzaEditor({
         <div key={pizza.num} className="space-y-3 border-b border-[var(--admin-border)] pb-4 last:border-0">
           <div className="flex items-center justify-between">
             <p className="text-sm font-semibold text-[var(--admin-text)]">Pizza č. {pizza.num}</p>
-            <AdminButton
-              variant="ghost"
-              onClick={() => {
-                const label = pizza.name.trim() ? `„${pizza.name.trim()}"` : `č. ${pizza.num}`
-                if (window.confirm(`Opravdu odebrat pizzu ${label}?`)) {
-                  onRemove(index)
-                }
-              }}
-            >
-              Odebrat
-            </AdminButton>
+            <AdminRemoveButton
+              confirmLabel={pizza.name.trim() ? `pizzu „${pizza.name.trim()}"` : `pizzu č. ${pizza.num}`}
+              onRemove={() => onRemove(index)}
+            />
           </div>
           <div className="grid gap-3 md:grid-cols-2">
             <AdminField label="Název">

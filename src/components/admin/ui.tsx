@@ -14,6 +14,35 @@ export function AdminButton({ variant = 'primary', className = '', children, ...
   )
 }
 
+export function AdminRemoveButton({
+  onRemove,
+  label,
+  confirmLabel,
+  children = 'Odebrat',
+  className = '',
+}: {
+  onRemove: () => void
+  label?: string
+  confirmLabel?: string
+  children?: ReactNode
+  className?: string
+}) {
+  return (
+    <AdminButton
+      variant="ghost"
+      className={className}
+      onClick={() => {
+        const target = confirmLabel ?? (label ? `„${label}"` : 'tuto položku')
+        if (window.confirm(`Opravdu odebrat ${target}?`)) {
+          onRemove()
+        }
+      }}
+    >
+      {children}
+    </AdminButton>
+  )
+}
+
 type AdminInputProps = InputHTMLAttributes<HTMLInputElement> & {
   invalid?: boolean
 }

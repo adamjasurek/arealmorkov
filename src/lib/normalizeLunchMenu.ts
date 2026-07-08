@@ -15,8 +15,10 @@ function normalizeDay(day: LunchMenuDay, index: number, date: Date): LunchMenuDa
       month: 'numeric',
     }).format(date)
 
-  const rotatingMains = Array.from({ length: 3 }, (_, i) => {
-    const existing = day.rotatingMains?.[i]
+  const existingMains = day.rotatingMains ?? []
+  const mainsCount = existingMains.length > 0 ? existingMains.length : 3
+  const rotatingMains = Array.from({ length: mainsCount }, (_, i) => {
+    const existing = existingMains[i]
     return existing?.id
       ? { ...emptyMeal(`main-${index}-${i}`), ...existing }
       : emptyMeal(`main-${index}-${i}`)
