@@ -9,7 +9,14 @@ const navGroups = [
   },
   {
     label: 'Koupaliště',
-    links: [{ to: '/admin/teplota', label: 'Teplota vody' }],
+    links: [
+      { to: '/admin/teplota', label: 'Teplota vody' },
+      { to: '/admin/koupaliste-obsah', label: 'Provoz a vstupné' },
+    ],
+  },
+  {
+    label: 'Kemp',
+    links: [{ to: '/admin/kemp-obsah', label: 'Ceník' }],
   },
   {
     label: 'Restaurace',
@@ -19,12 +26,13 @@ const navGroups = [
       { to: '/admin/vikendove-menu', label: 'Víkendové menu' },
       { to: '/admin/napojovy-listek', label: 'Nápojový lístek' },
       { to: '/admin/menu-pdf', label: 'PDF ke stažení' },
+      { to: '/admin/restaurace-obsah', label: 'Doba a rozvoz' },
     ],
   },
   {
     label: 'Web',
     links: [
-      { to: '/admin/obsah', label: 'Doby a ceníky' },
+      { to: '/admin/obsah', label: 'Běžící text' },
       { to: '/admin/fotky', label: 'Fotogalerie' },
     ],
   },

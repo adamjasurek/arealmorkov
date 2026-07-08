@@ -65,6 +65,15 @@ const AdminWeekendMenu = lazy(() =>
 const AdminDrinksMenu = lazy(() =>
   import('@/pages/admin/AdminDrinksMenu').then((m) => ({ default: m.AdminDrinksMenu })),
 )
+const AdminPoolContent = lazy(() =>
+  import('@/pages/admin/AdminPoolContent').then((m) => ({ default: m.AdminPoolContent })),
+)
+const AdminKempContent = lazy(() =>
+  import('@/pages/admin/AdminKempContent').then((m) => ({ default: m.AdminKempContent })),
+)
+const AdminRestaurantContent = lazy(() =>
+  import('@/pages/admin/AdminRestaurantContent').then((m) => ({ default: m.AdminRestaurantContent })),
+)
 const AdminSiteContent = lazy(() =>
   import('@/pages/admin/AdminSiteContent').then((m) => ({ default: m.AdminSiteContent })),
 )
@@ -146,6 +155,30 @@ export default function App() {
             element={
               <LazyPage>
                 <AdminDrinksMenu />
+              </LazyPage>
+            }
+          />
+          <Route
+            path="koupaliste-obsah"
+            element={
+              <LazyPage>
+                <AdminPoolContent />
+              </LazyPage>
+            }
+          />
+          <Route
+            path="kemp-obsah"
+            element={
+              <LazyPage>
+                <AdminKempContent />
+              </LazyPage>
+            }
+          />
+          <Route
+            path="restaurace-obsah"
+            element={
+              <LazyPage>
+                <AdminRestaurantContent />
               </LazyPage>
             }
           />
