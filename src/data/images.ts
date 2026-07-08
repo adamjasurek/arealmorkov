@@ -1,4 +1,3 @@
-import heroAreal from '@/assets/hero.webp'
 import kemp from '@/assets/kemp.webp'
 import koupaliste from '@/assets/koupaliste.webp'
 import restaurace from '@/assets/restaurace.webp'
@@ -9,7 +8,6 @@ export const images = {
   hero1: koupaliste,
   hero2: kemp,
   hero3: restaurace,
-  arealIntro: heroAreal,
   restaurantIntro: restaurace,
   campIntro: kemp,
   poolIntro: koupaliste,

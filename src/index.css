@@ -398,25 +398,7 @@
     animation: spin-slow 18s linear infinite;
   }
 
-  .corner-orbit {
-    transform-origin: 100% 0%;
-    animation: corner-orbit-spin 28s linear infinite;
-  }
-
-  @keyframes corner-orbit-spin {
-    from {
-      transform: rotate(0deg);
-    }
-    to {
-      transform: rotate(360deg);
-    }
-  }
-
   @media (prefers-reduced-motion: reduce) {
-    .corner-orbit {
-      animation: none;
-    }
-
     .hero-pillar {
       transform: none !important;
     }

@@ -20,17 +20,9 @@ export const contact = {
     'https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2579.198058501984!2d18.06188687699939!3d49.53111197141399!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x4713e70101010101%3A0x373e897c01010101!2sKv%C4%9Btn%C3%A1%20649%2C%20742%2072%20Mo%C5%99kov!5e0!3m2!1scs!2scz!4v1678886400000!5m2!1scs!2scz',
   operator: {
     name: 'Filip Stypka',
-    address: 'Hoblikova 26, 741 01 Nový Jičín',
+    address: 'Hobliková 26, 741 01 Nový Jičín',
     ico: '07023600',
   },
-} as const
-
-export const about = {
-  title: 'O našem areálu',
-  lead:
-    'Vítejte v rekreačním areálu v Mořkově, ideálním místě pro vaši dovolenou, rodinnou oslavu nebo jen odpolední relax u vody.',
-  body: 'Nabízíme komplexní služby od ubytování v kempu, přes skvělou gastronomii v naší restauraci, až po letní radovánky na moderním koupališti. Užijte si klidné prostředí, krásnou přírodu a přátelskou atmosféru. Těšíme se na vaši návštěvu!',
-  image: images.arealIntro,
 } as const
 
 export const heroColumns = [
