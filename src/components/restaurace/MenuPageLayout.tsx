@@ -15,7 +15,7 @@ export function MenuPageLayout({ children, pdfType }: Props) {
         <div className="mx-auto max-w-[1400px]">
           <Link
             to="/restaurace"
-            className="font-sans text-sm text-muted underline-offset-4 hover:text-foreground hover:underline"
+            className="inline-flex min-h-11 items-center font-sans text-sm text-muted underline-offset-4 hover:text-foreground hover:underline"
           >
             ← Restaurace Podhora
           </Link>

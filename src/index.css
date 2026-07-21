@@ -43,22 +43,34 @@
 
   html:has(.home-fullscreen) {
     overflow-y: hidden;
+    height: 100%;
   }
 
   body:has(.home-fullscreen) {
     overflow-y: hidden;
+    height: 100%;
   }
 
   body {
     @apply m-0 min-h-svh w-full max-w-full bg-surface font-sans text-foreground antialiased;
     overflow-x: hidden;
     --radius: 0px;
+    padding-left: env(safe-area-inset-left);
+    padding-right: env(safe-area-inset-right);
+  }
+
+  body.nav-open {
+    overflow: hidden;
   }
 
   #root {
     width: 100%;
     max-width: 100%;
     overflow-x: hidden;
+  }
+
+  #root:has(.home-fullscreen) {
+    height: 100%;
   }
 
   *,
@@ -118,13 +130,20 @@
   .card-brutal {
     border: 4px solid var(--color-brutal-border);
     background-color: var(--color-surface-elevated);
-    box-shadow: var(--shadow-brutal);
+    box-shadow: var(--shadow-brutal-sm);
   }
 
   .card-brutal-photo {
     border: 4px solid var(--color-brutal-border);
     background-color: transparent;
-    box-shadow: var(--shadow-brutal);
+    box-shadow: var(--shadow-brutal-sm);
+  }
+
+  @media (min-width: 768px) {
+    .card-brutal,
+    .card-brutal-photo {
+      box-shadow: var(--shadow-brutal);
+    }
   }
 
   .hero-pillar {
@@ -438,6 +457,10 @@
 
   .shadow-brutal {
     box-shadow: var(--shadow-brutal);
+  }
+
+  .shadow-brutal-sm {
+    box-shadow: var(--shadow-brutal-sm);
   }
 
   .shadow-brutal-pressed {

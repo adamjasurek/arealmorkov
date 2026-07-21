@@ -9,7 +9,7 @@ export function LunchMenuView() {
 
   return (
     <div>
-      <h3 className="font-display text-4xl text-gold-gradient md:text-5xl">{data.title}</h3>
+      <h3 className="font-display text-3xl text-gold-gradient sm:text-4xl md:text-5xl">{data.title}</h3>
       <p className="mt-2 font-sans text-muted">Restaurace Podhora · polední nabídka</p>
 
       <div className="mt-8 space-y-6">

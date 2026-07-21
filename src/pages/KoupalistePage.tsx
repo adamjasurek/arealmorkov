@@ -11,25 +11,25 @@ export function KoupalistePage() {
 
   return (
     <div>
-      <section className="relative isolate overflow-hidden border-b-4 border-foreground px-4 py-16 md:px-6">
+      <section className="relative isolate overflow-hidden border-b-4 border-foreground px-4 py-10 md:px-6 md:py-16">
         <PhotoBackground src={poolInfo.image} alt="Pohled na koupaliště" />
         <div className="relative z-10 mx-auto max-w-[1400px]">
           <SectionHeading title="Koupaliště" />
           <div className="grid gap-8 lg:grid-cols-2 lg:items-start">
             <div>
-              <h3 className="font-display text-3xl text-gold-gradient">{poolInfo.title}</h3>
-              <p className="mt-4 max-w-2xl font-sans text-lg text-muted">{poolInfo.body}</p>
+              <h3 className="font-display text-2xl text-gold-gradient sm:text-3xl">{poolInfo.title}</h3>
+              <p className="mt-4 max-w-2xl font-sans text-base text-muted sm:text-lg">{poolInfo.body}</p>
             </div>
             <WaterTempDisplay />
           </div>
         </div>
       </section>
 
-      <section className="border-b-4 border-foreground px-4 py-12 md:px-6">
+      <section className="border-b-4 border-foreground px-4 py-10 md:px-6 md:py-12">
         <div className="mx-auto max-w-[1400px]">
-          <h3 className="font-display mb-8 text-4xl">Otevírací doba a vstupné</h3>
+          <h3 className="font-display mb-6 text-3xl sm:text-4xl md:mb-8">Otevírací doba a vstupné</h3>
           <div className="grid gap-8 lg:grid-cols-2">
-            <div className="card-brutal p-6">
+            <div className="card-brutal p-5 sm:p-6">
               <h4 className="font-display text-2xl">Provozní doba</h4>
               <ul className="mt-4 space-y-3 font-sans">
                 {site.poolHours.map((h) => (
@@ -61,12 +61,16 @@ export function KoupalistePage() {
         </div>
       </section>
 
-      <section className="px-4 py-16 md:px-6">
+      <section className="px-4 py-12 md:px-6 md:py-16">
         <div className="mx-auto max-w-[1400px]">
-          <h3 className="font-display mb-8 text-4xl text-foreground">Občerstvení na koupališti</h3>
-          <div className="flex flex-wrap gap-3">
-            <BrutalButton>MENU KOUPELIŠTĚ →</BrutalButton>
-            <BrutalButton variant="outline">NÁPOJE →</BrutalButton>
+          <h3 className="font-display mb-6 text-3xl text-foreground sm:text-4xl md:mb-8">
+            Občerstvení na koupališti
+          </h3>
+          <div className="flex flex-col gap-3 sm:flex-row sm:flex-wrap">
+            <BrutalButton className="w-full sm:w-auto">MENU KOUPELIŠTĚ →</BrutalButton>
+            <BrutalButton variant="outline" className="w-full sm:w-auto">
+              NÁPOJE →
+            </BrutalButton>
           </div>
         </div>
       </section>

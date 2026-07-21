@@ -20,7 +20,7 @@ export function SisterBrandsSection() {
     <section className="border-t-4 border-foreground bg-surface-elevated px-4 py-14 md:px-6 md:py-20">
       <div className="mx-auto max-w-[1400px]">
         <header className="text-center">
-          <h2 className="font-display text-4xl text-gold-gradient md:text-5xl">
+          <h2 className="font-display text-3xl text-gold-gradient sm:text-4xl md:text-5xl">
             Líbí se vám u nás?
           </h2>
           <div className="mx-auto mt-4 h-1 w-20 bg-gold-500" aria-hidden />

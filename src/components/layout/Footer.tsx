@@ -15,7 +15,7 @@ export function Footer() {
   const pizzaDelivery = site.pizzaDelivery
 
   return (
-    <footer className="relative mt-20 w-full max-w-full overflow-x-hidden border-t-4 border-foreground bg-surface">
+    <footer className="relative mt-12 w-full max-w-full overflow-x-hidden border-t-4 border-foreground bg-surface md:mt-20">
       <Marquee className="border-t-0" />
 
       <div className="relative w-full overflow-hidden border-b-4 border-foreground">
@@ -26,10 +26,14 @@ export function Footer() {
           MOŘKOV
         </div>
 
-        <div className="relative mx-auto w-full max-w-[1400px] min-w-0 px-4 py-14 md:px-6 lg:py-16">
-          <div className="grid grid-cols-1 items-center gap-12 md:grid-cols-2 md:gap-16 lg:gap-24">
+        <div className="relative mx-auto w-full max-w-[1400px] min-w-0 px-4 py-10 md:px-6 md:py-14 lg:py-16">
+          <div className="grid grid-cols-1 items-center gap-10 md:grid-cols-2 md:gap-16 lg:gap-24">
             <div className="flex min-w-0 flex-col items-center md:items-end md:pr-4 lg:pr-8">
-              <Logo linked bordered={false} imageClassName="h-28 w-auto max-w-[320px] md:h-32 md:max-w-[380px]" />
+              <Logo
+                linked
+                bordered={false}
+                imageClassName="h-20 w-auto max-w-[240px] sm:h-28 sm:max-w-[320px] md:h-32 md:max-w-[380px]"
+              />
             </div>
 
             <div className="flex min-w-0 flex-col items-center md:items-start md:pl-4 lg:pl-8">
@@ -63,7 +67,7 @@ export function Footer() {
             </p>
             <a
               href={`tel:${pizzaDelivery.phone.replace(/\s/g, '')}`}
-              className="mt-2 block font-display text-4xl text-gold-gradient transition-opacity hover:opacity-90 md:text-5xl"
+              className="mt-2 block font-display text-3xl text-gold-gradient transition-opacity hover:opacity-90 sm:text-4xl md:text-5xl"
             >
               {pizzaDelivery.phone}
             </a>

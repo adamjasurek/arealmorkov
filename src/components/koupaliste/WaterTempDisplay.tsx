@@ -24,19 +24,19 @@ export function WaterTempDisplay() {
       : null
 
   return (
-    <div className="card-brutal relative overflow-visible bg-gold-gradient p-6 text-[#2b2a29] md:p-10">
-      <p className="font-accent text-2xl -rotate-1">teplota vody</p>
-      <div className="mt-4 grid gap-4 lg:grid-cols-[1fr_auto] lg:items-end" aria-live="polite">
+    <div className="card-brutal relative overflow-visible bg-gold-gradient p-5 text-[#2b2a29] sm:p-6 md:p-10">
+      <p className="font-accent text-xl -rotate-1 sm:text-2xl">teplota vody</p>
+      <div className="mt-3 grid gap-4 sm:mt-4 lg:grid-cols-[1fr_auto] lg:items-end" aria-live="polite">
         <div>
           <p className="font-sans text-xs uppercase tracking-wide opacity-70">bazén</p>
-          <p className="font-display text-[clamp(5rem,18vw,14rem)] leading-none">
+          <p className="font-display text-[clamp(3.5rem,22vw,14rem)] leading-none">
             {temp != null ? `${temp.toFixed(1)}°` : '-'}
           </p>
         </div>
 
-        <div className="card-brutal bg-surface px-5 py-4 text-foreground lg:mb-[0.55em]">
+        <div className="card-brutal bg-surface px-4 py-3 text-foreground sm:px-5 sm:py-4 lg:mb-[0.55em]">
           <p className="font-sans text-xs uppercase tracking-wide text-muted">brouzdaliště</p>
-          <p className="font-display text-4xl leading-none text-gold-gradient">
+          <p className="font-display text-3xl leading-none text-gold-gradient sm:text-4xl">
             {wadingTemp != null ? `${wadingTemp.toFixed(1)}°` : '-'}
           </p>
         </div>

@@ -15,36 +15,38 @@ function PizzaTable({
   items: PizzaItem[]
 }) {
   return (
-    <div className="card-brutal flex h-full flex-col p-5 md:p-6">
+    <div className="card-brutal flex h-full flex-col p-4 sm:p-5 md:p-6">
       <h4 className="font-display text-2xl text-gold-gradient">{title}</h4>
       {subtitle ? <p className="mt-1 font-sans text-sm text-muted">{subtitle}</p> : null}
-      <table className="mt-4 w-full border-collapse font-sans text-sm">
-        <thead>
-          <tr className="border-b-2 border-foreground/30 text-muted">
-            <th className="pb-2 text-left font-medium" />
-            <th className="pb-2 text-right font-medium">32 cm</th>
-            <th className="pb-2 text-right font-medium">45 cm</th>
-          </tr>
-        </thead>
-        <tbody>
-          {items.map((pizza) => (
-            <tr key={pizza.num} className="border-b border-foreground/15 align-top">
-              <td className="py-3 pr-3">
-                <span className="font-medium">
-                  {pizza.num}. {pizza.name}
-                </span>
-                <p className="mt-0.5 text-xs text-muted">({pizza.ingredients})</p>
-              </td>
-              <td className="py-3 text-right">
-                <PriceCell value={pizza.price32} />
-              </td>
-              <td className="py-3 text-right">
-                <PriceCell value={pizza.price45} />
-              </td>
+      <div className="-mx-1 overflow-x-auto">
+        <table className="mt-4 w-full min-w-[18rem] border-collapse font-sans text-sm">
+          <thead>
+            <tr className="border-b-2 border-foreground/30 text-muted">
+              <th className="pb-2 text-left font-medium" />
+              <th className="pb-2 text-right font-medium whitespace-nowrap">32 cm</th>
+              <th className="pb-2 text-right font-medium whitespace-nowrap">45 cm</th>
             </tr>
-          ))}
-        </tbody>
-      </table>
+          </thead>
+          <tbody>
+            {items.map((pizza) => (
+              <tr key={pizza.num} className="border-b border-foreground/15 align-top">
+                <td className="py-3 pr-3">
+                  <span className="font-medium">
+                    {pizza.num}. {pizza.name}
+                  </span>
+                  <p className="mt-0.5 text-xs text-muted">({pizza.ingredients})</p>
+                </td>
+                <td className="py-3 pl-2 text-right">
+                  <PriceCell value={pizza.price32} />
+                </td>
+                <td className="py-3 pl-2 text-right">
+                  <PriceCell value={pizza.price45} />
+                </td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
     </div>
   )
 }
@@ -83,7 +85,7 @@ export function FoodMenu() {
 
   return (
     <div>
-      <h3 className="font-display text-4xl text-gold-gradient md:text-5xl">{data.title}</h3>
+      <h3 className="font-display text-3xl text-gold-gradient sm:text-4xl md:text-5xl">{data.title}</h3>
       <p className="mt-2 font-sans text-muted">Restaurace Podhora · Pizza Olymp</p>
 
       <div className="mt-8 grid gap-6 xl:grid-cols-3">

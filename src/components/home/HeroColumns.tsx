@@ -32,7 +32,7 @@ export function HeroColumns() {
       className="relative isolate flex h-full min-h-0 w-full max-w-full flex-1 overflow-hidden bg-gold-gradient"
       aria-label="Hlavní nabídka areálu"
     >
-      <div className="relative z-10 mx-auto grid h-full min-h-0 w-full max-w-[1800px] min-w-0 grid-rows-3 gap-3 px-3 py-3 sm:gap-4 sm:px-4 sm:py-4 md:grid-cols-3 md:grid-rows-[minmax(0,1fr)] md:items-stretch md:gap-6 md:px-8 md:py-5 lg:gap-8 lg:px-12 lg:py-6">
+      <div className="relative z-10 mx-auto grid h-full min-h-0 w-full max-w-[1800px] min-w-0 grid-rows-3 gap-1.5 px-1.5 py-1.5 pb-[max(0.375rem,env(safe-area-inset-bottom))] sm:gap-2.5 sm:px-2.5 sm:py-2.5 md:grid-cols-3 md:grid-rows-[minmax(0,1fr)] md:items-stretch md:gap-6 md:px-8 md:py-5 lg:gap-8 lg:px-12 lg:py-6">
         {heroColumns.map((col, index) => {
           const card = (
             <Link
@@ -45,9 +45,9 @@ export function HeroColumns() {
                 loading={index === 0 ? 'eager' : 'lazy'}
                 fetchPriority={index === 0 ? 'high' : undefined}
               />
-              <div className="relative z-10 flex min-h-0 flex-1 flex-col p-4 sm:p-5 md:p-6 lg:p-8">
+              <div className="relative z-10 flex min-h-0 flex-1 flex-row items-center gap-2.5 p-2.5 sm:gap-3 sm:p-3.5 md:flex-col md:items-stretch md:p-6 lg:p-8">
                 <figure
-                  className="hero-polaroid mb-3 w-[42%] max-w-[140px] shrink-0 border-4 border-foreground bg-[#fefefe] p-1.5 pb-6 shadow-brutal sm:mb-4 sm:max-w-[160px] sm:pb-7 md:mb-5 md:w-[52%] md:max-w-[200px] md:p-2 md:pb-8 lg:max-w-[240px] xl:max-w-[280px]"
+                  className="hero-polaroid w-[4.25rem] shrink-0 border-4 border-foreground bg-[#fefefe] p-1 pb-2.5 shadow-brutal-sm sm:w-[5rem] sm:pb-3.5 md:mb-5 md:w-[52%] md:max-w-[200px] md:p-2 md:pb-8 md:shadow-brutal lg:max-w-[240px] xl:max-w-[280px]"
                   style={{ transform: `rotate(${col.rotate}deg)` }}
                 >
                   <img
@@ -60,27 +60,26 @@ export function HeroColumns() {
                   />
                 </figure>
 
-                <h2 className="font-display shrink-0 text-[clamp(1.75rem,4.2vw,4.1rem)] leading-none text-gold-gradient">
-                  {col.title}
-                </h2>
+                <div className="flex min-h-0 min-w-0 flex-1 flex-col justify-center md:justify-start">
+                  <h2 className="font-display shrink-0 text-[clamp(1.35rem,5.2vw,4.1rem)] leading-none text-gold-gradient">
+                    {col.title}
+                  </h2>
 
-                <p className="mt-2 min-h-0 flex-1 overflow-hidden font-sans text-sm leading-snug text-muted sm:text-base md:mt-3 md:text-lg lg:text-xl">
-                  {col.description}
-                </p>
+                  <p className="mt-1 line-clamp-2 font-sans text-[0.7rem] leading-snug text-muted sm:mt-1.5 sm:text-xs md:mt-3 md:line-clamp-none md:flex-1 md:overflow-hidden md:text-lg lg:text-xl">
+                    {col.description}
+                  </p>
 
-                <span className="btn-brutal mt-auto shrink-0 px-3 py-2 text-sm md:px-4 md:py-2.5 md:text-base lg:px-6 lg:py-3 lg:text-lg">
-                  {col.cta} →
-                </span>
+                  <span className="btn-brutal mt-2 shrink-0 self-start px-2.5 py-1.5 text-xs sm:mt-2.5 sm:px-3 sm:py-2 sm:text-sm md:mt-auto md:px-4 md:py-2.5 md:text-base lg:px-6 lg:py-3 lg:text-lg">
+                    {col.cta} →
+                  </span>
+                </div>
               </div>
             </Link>
           )
 
           if (index === 0) {
             return (
-              <div
-                key={col.id}
-                className="h-full min-h-0 min-w-0 md:-rotate-[2deg]"
-              >
+              <div key={col.id} className="h-full min-h-0 min-w-0 md:-rotate-[2deg]">
                 {card}
               </div>
             )
@@ -88,10 +87,7 @@ export function HeroColumns() {
 
           if (index === 2) {
             return (
-              <div
-                key={col.id}
-                className="h-full min-h-0 min-w-0 md:rotate-[2deg]"
-              >
+              <div key={col.id} className="h-full min-h-0 min-w-0 md:rotate-[2deg]">
                 {card}
               </div>
             )

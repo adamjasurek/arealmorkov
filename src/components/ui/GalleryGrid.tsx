@@ -17,15 +17,17 @@ export function GalleryGrid({ folder, title = 'Galerie' }: Props) {
   const items = getGalleryImages(folder)
 
   return (
-    <section className="border-t-4 border-foreground px-4 py-16 md:px-6">
+    <section className="border-t-4 border-foreground px-4 py-12 md:px-6 md:py-16">
       <div className="mx-auto max-w-[1400px]">
-        <h3 className="font-display mb-10 text-4xl text-gold-gradient md:text-5xl">{title}</h3>
+        <h3 className="font-display mb-8 text-3xl text-gold-gradient sm:text-4xl md:mb-10 md:text-5xl">
+          {title}
+        </h3>
 
-        <div className="grid grid-cols-2 gap-6 md:gap-8 lg:grid-cols-4">
+        <div className="grid grid-cols-2 gap-3 sm:gap-5 md:gap-8 lg:grid-cols-4">
           {items.map((item, i) => (
             <motion.figure
               key={item.id}
-              className="group border-4 border-foreground bg-[#fefefe] p-2 pb-8 shadow-brutal"
+              className="group border-4 border-foreground bg-[#fefefe] p-1.5 pb-5 shadow-brutal-sm sm:p-2 sm:pb-8 md:shadow-brutal"
               style={{ transform: `rotate(${rotations[i % rotations.length]}deg)` }}
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}

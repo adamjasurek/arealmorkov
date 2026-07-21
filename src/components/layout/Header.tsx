@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import { NavLink } from 'react-router-dom'
 import { motion, AnimatePresence } from 'framer-motion'
 import { Logo } from '@/components/ui/Logo'
@@ -13,10 +13,15 @@ const links = [
 export function Header() {
   const [open, setOpen] = useState(false)
 
+  useEffect(() => {
+    document.body.classList.toggle('nav-open', open)
+    return () => document.body.classList.remove('nav-open')
+  }, [open])
+
   return (
-    <header className="sticky top-0 z-50 w-full max-w-full border-b-4 border-foreground bg-surface">
-      <div className="mx-auto flex w-full max-w-[1400px] min-w-0 items-center justify-between gap-4 px-4 py-3 md:px-6">
-        <Logo linked bordered={false} />
+    <header className="sticky top-0 z-50 w-full max-w-full border-b-4 border-foreground bg-surface pt-[env(safe-area-inset-top)]">
+      <div className="mx-auto flex w-full max-w-[1400px] min-w-0 items-center justify-between gap-3 px-4 py-3 md:gap-4 md:px-6">
+        <Logo linked bordered={false} imageClassName="h-12 w-auto sm:h-14 md:h-20" />
 
         <nav className="hidden items-center gap-1 md:flex">
           {links.map((link) => (
@@ -36,7 +41,7 @@ export function Header() {
 
         <button
           type="button"
-          className="btn-brutal-outline px-4 py-2 text-base md:hidden"
+          className="btn-brutal-outline min-h-11 min-w-11 px-3 py-2.5 text-lg md:hidden"
           onClick={() => setOpen((v) => !v)}
           aria-expanded={open}
           aria-label="Menu"

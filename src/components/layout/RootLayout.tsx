@@ -11,7 +11,7 @@ export function RootLayout() {
     <div
       className={`grid w-full max-w-full overflow-x-hidden ${
         isFullscreen
-          ? 'home-fullscreen h-svh grid-rows-[auto_1fr] overflow-y-hidden'
+          ? 'home-fullscreen h-dvh grid-rows-[auto_1fr] overflow-y-hidden'
           : 'min-h-svh grid-rows-[auto_1fr_auto]'
       }`}
     >

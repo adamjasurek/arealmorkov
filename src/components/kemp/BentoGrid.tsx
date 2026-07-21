@@ -11,7 +11,7 @@ export function BentoGrid({ onOrder }: Props) {
   const { accommodation } = useMergedSiteContent()
 
   return (
-    <div className="grid gap-6 sm:grid-cols-2 xl:grid-cols-4">
+    <div className="grid gap-4 sm:grid-cols-2 sm:gap-6 xl:grid-cols-4">
       {accommodation.map((item, i) => (
         <motion.article
           key={item.id}
